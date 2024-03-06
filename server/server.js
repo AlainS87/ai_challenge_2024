@@ -5,7 +5,7 @@ const cors = require('cors');
 const OpenAI = require("openai");
 
 const openai = new OpenAI({
-  apiKey: "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" // This is also the default, can be omitted
+  apiKey: "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" // This is also the default, can be omitted
 });
 
 const app = express();
@@ -20,15 +20,24 @@ app.post('/api/recommend-music', async (req, res) => {
   try {
     const response = await openai.chat.completions.create({
       model: "gpt-3.5-turbo", // 确保检查最新的模型版本
-      prompt: `Based on the following user input about their mood or an event, recommend some music: "${userInput}"`,
+      messages: [
+        {
+          role: "system",
+          content: `Based on the following user input about their mood or an event, recommend some music: "${userInput}"`
+        },
+        {
+          role: "user",
+          content: userInput
+        }
+      ],
       temperature: 0.7,
       max_tokens: 40,
       top_p: 1.0,
       frequency_penalty: 0.0,
       presence_penalty: 0.0,
     });
-
-    const recommendations = response.data.choices[0].text.trim();
+    console.log(response.choices[0].message);
+    const recommendations = response.choices[0].message;
     res.json({ recommendations });
   } catch (error) {
     console.error(error);

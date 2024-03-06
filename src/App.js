@@ -24,7 +24,7 @@ function App() {
     }
 
     const data = await response.json(); // 解析返回的JSON数据
-    setRecommendations(data.recommendations); // 将推荐更新到状态中，以便显示
+    setRecommendations(data.recommendations.content); // 将推荐更新到状态中，以便显示
   };
 
   return (
