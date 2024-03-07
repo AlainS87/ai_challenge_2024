@@ -5,11 +5,11 @@ const cors = require('cors');
 const OpenAI = require("openai");
 
 const openai = new OpenAI({
-  apiKey: "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" // This is also the default, can be omitted
+  apiKey: "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" // This is also the default, can be omitted
 });
 
 const app = express();
-const port = 5000;
+const port = 5003;
 
 app.use(cors());
 app.use(express.json()); // 使用express内置的中间件代替body-parser

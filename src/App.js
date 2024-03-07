@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
+import AudioPlayer from "./AudioPlayer";
 
 function App() {
   const [input, setInput] = useState(''); // 用户输入的状态
@@ -8,7 +9,7 @@ function App() {
   // 处理提交事件
   const handleSubmit = async () => {
     // 发送POST请求到你的后端API
-    const response = await fetch('http://localhost:5000/api/recommend-music', {
+    const response = await fetch('http://localhost:5003/api/recommend-music', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -46,6 +47,7 @@ function App() {
             <p>{recommendations}</p>
           </div>
         )}
+        <AudioPlayer />
       </header>
     </div>
   );
