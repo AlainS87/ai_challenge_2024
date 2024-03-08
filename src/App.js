@@ -8,7 +8,7 @@ function App() {
   // 处理提交事件
   const handleSubmit = async () => {
     // 发送POST请求到你的后端API
-    const response = await fetch('http://localhost:5000/api/recommend-music', {
+    const response = await fetch('http://localhost:5001/api/recommend-music', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
