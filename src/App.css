@@ -98,6 +98,21 @@
   border: 2px solid #ccc;
   border-radius: 8px;
   font-family: inherit; /* Consistent font */
+  text-align: left;
+}
+
+.personal-info select {
+  width: 327.63px; /* Adjust width to match input areas */
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  font-family: inherit; /* Consistent font */
+  text-align: left;
+}
+
+select option[value=""][disabled] {
+  color: #ccc; /* Adjust the color to your preference */
 }
 
 .mood-input {
@@ -159,7 +174,7 @@ button:hover {
 }
 
 @media (max-width: 768px) {
-  .personal-info input, .mood-input textarea, .artist, .number, .song {
+  .personal-info input, .personal-info select, .mood-input textarea, .artist, .number, .song {
     width: 90%; /* Responsive width on smaller screens */
   }
 }
