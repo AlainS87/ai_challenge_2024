@@ -1,10 +1,10 @@
+/*
 .App-header {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  /* 使用视窗高度确保header充满屏幕 */
 }
 
 .personal-info {
@@ -12,41 +12,28 @@
   flex-direction: column;
   align-items: flex-start;
   margin-bottom: 20px;
-  /* 在个人信息部分和心情描述输入框之间添加一些间隔 */
 }
 
 .personal-info input {
   width: 300px;
-  /* 设置输入字段的宽度 */
   padding: 8px;
-  /* 增加内边距以提高输入的易用性 */
   margin-bottom: 10px;
-  /* 在输入字段之间添加一些垂直间距 */
   border: 1px solid #ccc;
-  /* 定义边框样式 */
   border-radius: 4px;
-  /* 轻微的圆角边缘 */
 }
 
 .mood-input {
   width: 100%;
-  /* 确保textarea宽度与输入字段宽度一致 */
   display: flex;
   justify-content: center;
-  /* 居中心情描述输入框 */
 }
 
 .mood-input textarea {
   width: 300px;
-  /* 限制文本区域的宽度 */
   padding: 10px;
-  /* 文本区的内边距 */
   margin-top: 20px;
-  /* 与个人信息部分之间的间隔 */
   border: 1px solid #ccc;
-  /* 文本区域的边框样式 */
   border-radius: 4px;
-  /* 文本区域的圆角边缘 */
 }
 
 .recommendations {
@@ -69,23 +56,110 @@
 .artist {
   width: 300px;
   text-align: center;
-  /* 调整间距 */
 }
 
 .number {
   width: 300px;
-  /* 确保数字部分宽度足够且一致 */
   text-align: center;
-  /* 数字靠右对齐 */
 }
 
 .song {
-  /* 歌曲名占据剩余空间 */
   width: 300px;
-  /* 确保数字部分宽度足够且一致 */
   text-align: center;
 }
 
 .inner {
   text-align: center;
+}
+*/
+
+.App-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #f4f4f8; /* Soft neutral background */
+  color: #333; /* Readable text color */
+  font-family: 'Open Sans', sans-serif; /* Clean, modern font */
+}
+
+.personal-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 30px;
+}
+
+.personal-info input, .mood-input textarea {
+  width: 300px;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  font-family: inherit; /* Consistent font */
+}
+
+.mood-input {
+  display: flex;
+  justify-content: center;
+}
+
+.mood-input textarea {
+  width: 300px;
+  padding: 12px;
+  margin-top: 30px;
+  height: 100px; /* Larger area for mood description */
+}
+
+.recommendations {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 800px; /* Centered content */
+  margin: auto;
+  padding: 20px;
+  background-color: #fff; /* Cards background */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Subtle shadow for depth */
+  border-radius: 16px; /* Rounded corners for cards */
+}
+
+.recommendation-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.artist, .number, .song {
+  text-align: center;
+  margin: 0 10px;
+}
+
+button {
+  padding: 12px 20px;
+  background-color: #ff6f61; /* Vibrant accent color */
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background-color 0.3s ease; /* Smooth transition for button */
+}
+
+button:hover {
+  background-color: #ff9570; /* Slightly lighter on hover */
+}
+
+.inner {
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .personal-info input, .mood-input textarea, .artist, .number, .song {
+    width: 90%; /* Responsive width on smaller screens */
+  }
 }
