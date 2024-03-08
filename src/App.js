@@ -17,7 +17,11 @@ function App() {
   // 处理提交事件
   const handleSubmit = async () => {
     // 发送POST请求到你的后端API，包括用户输入和个人偏好信息
+<<<<<<< HEAD
     const response = await fetch('http://localhost:5000/api/recommend-music', {
+=======
+    const response = await fetch('http://localhost:5200/api/recommend-music', {
+>>>>>>> 8da00017a52b90c1290fdd1a45f592612241c6e2
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -46,9 +50,30 @@ function App() {
           {/* 个人信息输入字段 */}
           <input value={age} onChange={(e) => setAge(e.target.value)} placeholder="Age" />
           <input value={mbti} onChange={(e) => setMbti(e.target.value)} placeholder="MBTI Type" />
-          <input value={gender} onChange={(e) => setGender(e.target.value)} placeholder="Gender" />
+          <select value={gender} onChange={(e) => setGender(e.target.value)}>
+            <option value="" disabled>Select Gender</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">NTUC Shopping Bag</option>
+            <option value="">Do not wish to specify</option>
+          </select>
           <input value={job} onChange={(e) => setJob(e.target.value)} placeholder="Job" />
-          <input value={zodiac} onChange={(e) => setZodiac(e.target.value)} placeholder="Zodiac Sign" />
+          <select value={zodiac} onChange={(e) => setZodiac(e.target.value)}>
+            <option value="" disabled>Select Zodiac Sign</option>
+            <option value="Aries">Aries</option>
+            <option value="Taurus">Taurus</option>
+            <option value="Gemini">Gemini</option>
+            <option value="Cancer">Cancer</option>
+            <option value="Leo">Leo</option>
+            <option value="Virgo">Virgo</option>
+            <option value="Libra">Libra</option>
+            <option value="Scorpio">Scorpio</option>
+            <option value="Sagittarius">Sagittarius</option>
+            <option value="Capricorn">Capricorn</option>
+            <option value="Aquarius">Aquarius</option>
+            <option value="Pisces">Pisces</option>
+            <option value="">Do not wish to specify</option>
+          </select>
           <input value={relationshipStatus} onChange={(e) => setRelationshipStatus(e.target.value)} placeholder="Relationship Status" />
         </div>
         <div className="mood-input">
