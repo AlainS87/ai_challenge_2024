@@ -5,7 +5,7 @@ const cors = require('cors');
 const OpenAI = require("openai");
 
 const openai = new OpenAI({
-  apiKey: "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" // This is also the default, can be omitted
+  apiKey: "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" // This is also the default, can be omitted
 });
 
 const app = express();
