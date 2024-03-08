@@ -1,38 +1,91 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  min-height: 100vh;
+  /* 使用视窗高度确保header充满屏幕 */
 }
 
-.App-link {
-  color: #61dafb;
+.personal-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 20px;
+  /* 在个人信息部分和心情描述输入框之间添加一些间隔 */
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.personal-info input {
+  width: 300px;
+  /* 设置输入字段的宽度 */
+  padding: 8px;
+  /* 增加内边距以提高输入的易用性 */
+  margin-bottom: 10px;
+  /* 在输入字段之间添加一些垂直间距 */
+  border: 1px solid #ccc;
+  /* 定义边框样式 */
+  border-radius: 4px;
+  /* 轻微的圆角边缘 */
+}
+
+.mood-input {
+  width: 100%;
+  /* 确保textarea宽度与输入字段宽度一致 */
+  display: flex;
+  justify-content: center;
+  /* 居中心情描述输入框 */
+}
+
+.mood-input textarea {
+  width: 300px;
+  /* 限制文本区域的宽度 */
+  padding: 10px;
+  /* 文本区的内边距 */
+  margin-top: 20px;
+  /* 与个人信息部分之间的间隔 */
+  border: 1px solid #ccc;
+  /* 文本区域的边框样式 */
+  border-radius: 4px;
+  /* 文本区域的圆角边缘 */
+}
+
+.recommendations {
+  width: max-width;
+  text-align: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  padding: 0 20px;
+}
+
+.recommendation-item {
+  width: max-width;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 10px;
+}
+
+.artist {
+  width: 300px;
+  text-align: center;
+  /* 调整间距 */
+}
+
+.number {
+  width: 300px;
+  /* 确保数字部分宽度足够且一致 */
+  text-align: center;
+  /* 数字靠右对齐 */
+}
+
+.song {
+  /* 歌曲名占据剩余空间 */
+  width: 300px;
+  /* 确保数字部分宽度足够且一致 */
+  text-align: center;
+}
+
+.inner {
+  text-align: center;
 }
