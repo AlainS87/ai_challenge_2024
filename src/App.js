@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
+import AudioPlayer from "./AudioPlayer";
 
 function App() {
   const [input, setInput] = useState(''); // 用户输入的状态
@@ -46,6 +47,7 @@ function App() {
             <p>{recommendations}</p>
           </div>
         )}
+        <AudioPlayer />
       </header>
     </div>
   );
