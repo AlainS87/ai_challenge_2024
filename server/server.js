@@ -9,11 +9,7 @@ const openai = new OpenAI({
 });
 
 const app = express();
-<<<<<<< HEAD
 const port = 5000;
-=======
-const port = 5200;
->>>>>>> 8da00017a52b90c1290fdd1a45f592612241c6e2
 
 app.use(cors());
 app.use(express.json()); // 使用express内置的中间件代替body-parser

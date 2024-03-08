@@ -17,11 +17,7 @@ function App() {
   // 处理提交事件
   const handleSubmit = async () => {
     // 发送POST请求到你的后端API，包括用户输入和个人偏好信息
-<<<<<<< HEAD
     const response = await fetch('http://localhost:5000/api/recommend-music', {
-=======
-    const response = await fetch('http://localhost:5200/api/recommend-music', {
->>>>>>> 8da00017a52b90c1290fdd1a45f592612241c6e2
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
