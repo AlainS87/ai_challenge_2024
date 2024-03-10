@@ -97,6 +97,11 @@ function App() {
           </div>
         )}
         <AudioPlayer />
+        <iframe 
+          src="https://open.spotify.com/embed/track/6ATM1zRLGYYP72J9xwnL1L? utm_source=generator"
+          width="50%" height="352" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"
+          >
+          </iframe>
       </header>
     </div>
   );
