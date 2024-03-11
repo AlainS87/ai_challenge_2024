@@ -51,7 +51,7 @@ function App() {
             <option value="Male">Male</option>
             <option value="Female">Female</option>
             <option value="Other">NTUC Shopping Bag</option>
-            <option value="">Do not wish to specify</option>
+            <option value="Do not wish to specify">Do not wish to specify</option>
           </select>
           <input value={job} onChange={(e) => setJob(e.target.value)} placeholder="Job" />
           <select value={zodiac} onChange={(e) => setZodiac(e.target.value)}>
@@ -68,7 +68,7 @@ function App() {
             <option value="Capricorn">Capricorn</option>
             <option value="Aquarius">Aquarius</option>
             <option value="Pisces">Pisces</option>
-            <option value="">Do not wish to specify</option>
+            <option value="Do not wish to specify">Do not wish to specify</option>
           </select>
           <input value={relationshipStatus} onChange={(e) => setRelationshipStatus(e.target.value)} placeholder="Relationship Status" />
         </div>
