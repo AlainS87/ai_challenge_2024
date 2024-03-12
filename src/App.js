@@ -43,36 +43,14 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-      <img src={logo} alt="SoulSound Logo" className="logo" />
         <div className="personal-info">
           {/* 个人信息输入字段 */}
           <input value={age} onChange={(e) => setAge(e.target.value)} placeholder="Age" />
-          <input value={mbti} onChange={(e) => setMbti(e.target.value)} placeholder="MBTI Type" />
-          <select value={gender} onChange={(e) => setGender(e.target.value)}>
-            <option value="" disabled>Select Gender</option>
-            <option value="Male">Male</option>
-            <option value="Female">Female</option>
-            <option value="Other">NTUC Shopping Bag</option>
-            <option value="">Do not wish to specify</option>
-          </select>
+          <MBTISelect value={mbti} onChange={(e) => setMbti(e.target.value)}/>
+          <GenderSelect value={gender} onChange={(e) => setGender(e.target.value)} />
           <input value={job} onChange={(e) => setJob(e.target.value)} placeholder="Job" />
-          <select value={zodiac} onChange={(e) => setZodiac(e.target.value)}>
-            <option value="" disabled>Select Zodiac Sign</option>
-            <option value="Aries">Aries</option>
-            <option value="Taurus">Taurus</option>
-            <option value="Gemini">Gemini</option>
-            <option value="Cancer">Cancer</option>
-            <option value="Leo">Leo</option>
-            <option value="Virgo">Virgo</option>
-            <option value="Libra">Libra</option>
-            <option value="Scorpio">Scorpio</option>
-            <option value="Sagittarius">Sagittarius</option>
-            <option value="Capricorn">Capricorn</option>
-            <option value="Aquarius">Aquarius</option>
-            <option value="Pisces">Pisces</option>
-            <option value="">Do not wish to specify</option>
-          </select>
-          <input value={relationshipStatus} onChange={(e) => setRelationshipStatus(e.target.value)} placeholder="Relationship Status" />
+          <ZodiacSelect value={zodiac} onChange={(e) => setZodiac(e.target.value)} />
+          <RelationshipSelect value={relationshipStatus} onChange={(e) => setRelationshipStatus(e.target.value)} />
         </div>
         <div className="mood-input">
           {/* 用户心情描述输入框 */}
@@ -100,7 +78,89 @@ function App() {
         )}
         <AudioPlayer />
       </header>
+      <div className='panel'>
+      <img src={logo} alt="SoulSound Logo" className="logo" />
+        <div className="about-us">
+          <h2>About Us</h2>
+        </div>
+        <div className="get-started">
+          <h2>Get Started</h2>
+        </div>
+      </div>
     </div>
+  );
+}
+
+function MBTISelect({ value, onChange}) {
+  return (
+    <select value={value} onChange={onChange}>
+      <option value="" disabled>Select MBTI</option>
+      <option value="INTJ">INTJ</option>
+      <option value="INTP">INTP</option>
+      <option value="ENTJ">ENTJ</option>
+      <option value="ENTP">ENTP</option>
+      <option value="INFJ">INFJ</option>
+      <option value="INFP">INFP</option>
+      <option value="ENFJ">ENFJ</option>
+      <option value="ENFP">ENFP</option>
+      <option value="ISTJ">ISTJ</option>
+      <option value="ISFJ">ISFJ</option>
+      <option value="ESTJ">ESTJ</option>
+      <option value="ESFJ">ESFJ</option>
+      <option value="ISTP">ISTP</option>
+      <option value="ISFP">ISFP</option>
+      <option value="ESTP">ESTP</option>
+      <option value="ESFP">ESFP</option>
+      <option value="IDoNotKnowWhatIsMBTI">I do not know what is MBTI</option>
+    </select>
+  );
+}
+
+function GenderSelect({ value, onChange}) {
+  return (
+    <select value={value} onChange={onChange}>
+      <option value="" disabled>Select Gender</option>
+      <option value="Male">Male</option>
+      <option value="Female">Female</option>
+      <option value="Other">NTUC Shopping Bag</option>
+      <option value="DoNotWishToSpecify">Do not wish to specify</option>
+    </select>
+  );
+}
+
+function ZodiacSelect({ value, onChange}) {
+  return (
+    <select value={value} onChange={onChange}>
+      <option value="" disabled>Select Zodiac Sign</option>
+      <option value="Aries">Aries</option>
+      <option value="Taurus">Taurus</option>
+      <option value="Gemini">Gemini</option>
+      <option value="Cancer">Cancer</option>
+      <option value="Leo">Leo</option>
+      <option value="Virgo">Virgo</option>
+      <option value="Libra">Libra</option>
+      <option value="Scorpio">Scorpio</option>
+      <option value="Sagittarius">Sagittarius</option>
+      <option value="Capricorn">Capricorn</option>
+      <option value="Aquarius">Aquarius</option>
+      <option value="Pisces">Pisces</option>
+      <option value="DoNotWishToSpecify">Do not wish to specify</option>
+    </select>
+  );
+}
+
+function RelationshipSelect({ value, onChange}) {
+  return (
+    <select value={value} onChange={onChange}>
+      <option value="" disabled>Select Relationship Type</option>
+      <option value="single">Single</option>
+      <option value="married">Married</option>
+      <option value="long-distance">Long-distance</option>
+      <option value="divorced">Divorced</option>
+      <option value="attached">Attached</option>
+      <option value="separated">Separated</option>
+      <option value="DoNotWishToDisclose">Do not wish to dislose</option>
+    </select>
   );
 }
 
