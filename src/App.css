@@ -10,11 +10,43 @@
   padding-top: 100px;
 }
 
-.logo {
-  position: absolute; /* Position the logo absolutely within the header */
-  top: 0px; /* Adjust this value as needed to move the logo up or down */
-  left: 10px; /* Adjust this value as needed to move the logo left or right */
-  width: 250px; /* Adjust this value as needed for the size of the logo */
+.logo { 
+  width: 250px;
+  left: -50px;
+  position: relative;
+}
+
+.panel {
+  width: 250px; /* Adjust width as needed */
+  background: linear-gradient(145deg, #1d1e2e, #393759);
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  overflow-y: auto;
+  padding: 20px; /* Adjust padding as needed */
+  box-sizing: border-box;
+}
+
+.about-us, .get-started {
+  color: #fff;
+  display: flex; /* Use flexbox to center align content */
+  flex-direction: column; /* Stack content vertically */
+  justify-content: left; /* Center content vertically */
+  align-items: left; /* Center content horizontally */
+  margin-bottom: 20px; /* Add margin between sections */
+  padding: 20px; /* Add padding to create space inside the box */
+  border: 2px solid #fff; /* Add border around the sections */
+  border-radius: 8px; /* Add border radius for rounded corners */
+  background-color: #307473; /* Background color of the "button" */
+  text-align: left; /* Center align text */
+  cursor: pointer; /* Show pointer cursor on hover */
+  transition: background-color 0.3s ease; /* Smooth transition for background color */
+}
+
+.about-us h2, .get-started h2 {
+  margin-top: 0; /* Remove default margin */
+  margin-bottom: 0;
 }
 
 .personal-info {
