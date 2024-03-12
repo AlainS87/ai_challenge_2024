@@ -79,7 +79,7 @@ function App() {
     }));
 
     // 现在 songArtistArray 包含了歌曲名和对应的歌手名
-    const example_songs = songArtistArray.map(track => `${track.songName} by ${track.artistNames}`).join(", ");
+    const example_songs = songArtistArray.map(track => `Song name:${track.songName} Artist Name: ${track.artistNames}`).join(", ");
     console.log(example_songs);
     setRecommendations_spotify(songArtistArray); // 假设后端直接返回 tracks 数组
 
@@ -100,11 +100,39 @@ function App() {
     }
 
     const data = await response.json(); // 解析返回的JSON数据
+    console.log(data.recommendations);
     const recommendationsList = data.recommendations.split("\n").map((item) => {
       const parts = item.split("|").map(part => part.trim()); // 分割每一项，并去除首尾空格
-      return { number: parts[0], song: parts[1], artist: parts[2] };
+      return { number: parts[0], song: parts[1].replace(/"/g, ''), artist: parts[2] };
     });
     setRecommendations(recommendationsList);
+
+
+    const tracksInfo = recommendationsList.map(item => {
+      const song = item.song ? item.song.replace(/"/g, '\\"') : "";
+      const artist = item.artist ? item.artist.replace(/"/g, '\\"') : "";
+      return `${song} | ${artist}`;
+    });
+    console.log(tracksInfo);
+
+    const spotify_search_response = await fetch('http://localhost:5100/create-playlist', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        tracksInfo,
+        playlistName: 'Soul Sound Recommendation List'
+      }),
+    });
+
+    const souldata = await spotify_search_response.json(); // 解析JSON响应
+    console.log(souldata);
+    if (!spotify_search_response.ok) {
+      // 如果请求失败，打印错误信息
+      console.error("Failed to create list in spotify.");
+      return;
+    }
   };
 
   return (
@@ -113,7 +141,7 @@ function App() {
         <div className="personal-info">
           {/* 个人信息输入字段 */}
           <input value={age} onChange={(e) => setAge(e.target.value)} placeholder="Age" />
-          <MBTISelect value={mbti} onChange={(e) => setMbti(e.target.value)}/>
+          <MBTISelect value={mbti} onChange={(e) => setMbti(e.target.value)} />
           <GenderSelect value={gender} onChange={(e) => setGender(e.target.value)} />
           <input value={job} onChange={(e) => setJob(e.target.value)} placeholder="Job" />
           <ZodiacSelect value={zodiac} onChange={(e) => setZodiac(e.target.value)} />
@@ -146,7 +174,7 @@ function App() {
         <AudioPlayer />
       </header>
       <div className='panel'>
-      <img src={logo} alt="SoulSound Logo" className="logo" />
+        <img src={logo} alt="SoulSound Logo" className="logo" />
         <div className="about-us">
           <h2>About Us</h2>
         </div>
@@ -158,7 +186,7 @@ function App() {
   );
 }
 
-function MBTISelect({ value, onChange}) {
+function MBTISelect({ value, onChange }) {
   return (
     <select value={value} onChange={onChange}>
       <option value="" disabled>Select MBTI</option>
@@ -183,7 +211,7 @@ function MBTISelect({ value, onChange}) {
   );
 }
 
-function GenderSelect({ value, onChange}) {
+function GenderSelect({ value, onChange }) {
   return (
     <select value={value} onChange={onChange}>
       <option value="" disabled>Select Gender</option>
@@ -195,7 +223,7 @@ function GenderSelect({ value, onChange}) {
   );
 }
 
-function ZodiacSelect({ value, onChange}) {
+function ZodiacSelect({ value, onChange }) {
   return (
     <select value={value} onChange={onChange}>
       <option value="" disabled>Select Zodiac Sign</option>
@@ -216,7 +244,7 @@ function ZodiacSelect({ value, onChange}) {
   );
 }
 
-function RelationshipSelect({ value, onChange}) {
+function RelationshipSelect({ value, onChange }) {
   return (
     <select value={value} onChange={onChange}>
       <option value="" disabled>Select Relationship Type</option>

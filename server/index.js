@@ -2,6 +2,7 @@ const express = require('express')
 const request = require('request');
 const dotenv = require('dotenv');
 const cors = require('cors');
+const SpotifyWebApi = require('spotify-web-api-node');
 
 // 在其他中间件注册之前注册 CORS 中间件
 
@@ -16,6 +17,12 @@ var spotify_client_secret = '72db1e5be9414939b5fa695ebdc76e48'
 
 var spotify_redirect_uri = 'http://localhost:3000/auth/callback'
 
+const spotifyApi = new SpotifyWebApi({
+  clientId: spotify_client_id,
+  clientSecret: spotify_client_secret,
+  redirectUri: spotify_redirect_uri
+});
+
 var generateRandomString = function (length) {
   var text = '';
   var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -28,10 +35,11 @@ var generateRandomString = function (length) {
 
 var app = express();
 app.use(cors());
-
+app.use(express.json());
 app.get('/auth/login', (req, res) => {
 
-  var scope = "streaming user-read-email user-read-private"
+  var scope = ["streaming user-read-email user-read-private", 'playlist-modify-public',
+    'playlist-modify-private'];
   var state = generateRandomString(16);
 
   var auth_query_parameters = new URLSearchParams({
@@ -65,6 +73,7 @@ app.get('/auth/callback', (req, res) => {
   request.post(authOptions, function (error, response, body) {
     if (!error && response.statusCode === 200) {
       access_token = body.access_token;
+      spotifyApi.setAccessToken(access_token);
       res.redirect('/')
     }
   });
@@ -73,6 +82,7 @@ app.get('/auth/callback', (req, res) => {
 
 app.get('/auth/token', (req, res) => {
   console.log(access_token)
+  spotifyApi.setAccessToken(access_token);
   res.json({ access_token: access_token })
 })
 
@@ -319,8 +329,45 @@ function moodToGenres(mood) {
     'Love': ['romance', 'pop', 'r-n-b', 'soul', 'singer-songwriter', 'acoustic'],
   };
 
-  return moodGenresMap[mood] || []; // 如果找不到对应情绪，返回空数组
+  return moodGenresMap[mood] || ['romance', 'pop', 'r-n-b', 'soul', 'singer-songwriter', 'acoustic']; // 如果找不到对应情绪，返回空数组
 }
 
+app.post('/create-playlist', async (req, res) => {
+  const { tracksInfo, playlistName } = req.body; // 从请求体获取歌曲信息和播放列表名称
+  spotifyApi.setAccessToken(access_token);
+  console.log(tracksInfo);
+  console.log(playlistName);
+  console.log(access_token);
+  try {
+    // 创建一个空的播放列表
+    const playlist = await spotifyApi.createPlaylist(playlistName, {
+      description: '通过ChatGPT推荐的歌曲列表',
+      public: true // 或根据需要将其设置为false
+    });
 
+    // 搜索每首歌曲并获取其Spotify ID
+    // 假设tracksInfo是一个包含歌曲名和歌手的数组，格式为["歌曲名 - 歌手名"]
+    const trackIds = await Promise.all(tracksInfo.map(async (trackInfo) => {
+      // 使用 "track:歌曲名 artist:歌手名" 格式来提高搜索准确性
+      const query = `track:${trackInfo.split(' | ')[0]} artist:${trackInfo.split(' | ')[1]}`;
+      console.log(query);
+      const result = await spotifyApi.searchTracks(query);
+      return result.body.tracks.items.length > 0 ? `spotify:track:${result.body.tracks.items[0].id}` : null;
+    }));
 
+    // 过滤掉未找到的歌曲
+    const filteredTrackIds = trackIds.filter(id => id !== null);
+
+    // 将歌曲添加到播放列表
+    await spotifyApi.addTracksToPlaylist(playlist.body.id, filteredTrackIds);
+
+    res.json({
+      message: '播放列表创建成功',
+      playlistId: playlist.body.id,
+      playlistUrl: playlist.body.external_urls.spotify
+    });
+  } catch (error) {
+    console.error('创建播放列表时发生错误:', error);
+    res.status(500).json({ error: '服务器内部错误' });
+  }
+});
