@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
 import AudioPlayer from "./AudioPlayer";
+import logo from "./img/logo.png";
 
 function App() {
   // 存储用户输入和个人偏好的状态
@@ -17,7 +18,7 @@ function App() {
   // 处理提交事件
   const handleSubmit = async () => {
     // 发送POST请求到你的后端API，包括用户输入和个人偏好信息
-    const response = await fetch('http://localhost:5000/api/recommend-music', {
+    const response = await fetch('http://localhost:5200/api/recommend-music', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -42,6 +43,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
+      <img src={logo} alt="SoulSound Logo" className="logo" />
         <div className="personal-info">
           {/* 个人信息输入字段 */}
           <input value={age} onChange={(e) => setAge(e.target.value)} placeholder="Age" />

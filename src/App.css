@@ -1,118 +1,51 @@
-/*
 .App-header {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   min-height: 100vh;
+  background: linear-gradient(145deg, #1d1e2e, #393759); /* Dark gradient background */
+  color: #fff; /* Adjusted for better readability */
+  font-family: 'Open Sans', sans-serif;
+  padding-top: 100px;
+}
+
+.logo {
+  position: absolute; /* Position the logo absolutely within the header */
+  top: 0px; /* Adjust this value as needed to move the logo up or down */
+  left: 10px; /* Adjust this value as needed to move the logo left or right */
+  width: 250px; /* Adjust this value as needed for the size of the logo */
 }
 
 .personal-info {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin-bottom: 20px;
-}
-
-.personal-info input {
-  width: 300px;
-  padding: 8px;
-  margin-bottom: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-.mood-input {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-}
-
-.mood-input textarea {
-  width: 300px;
-  padding: 10px;
-  margin-top: 20px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-.recommendations {
-  width: max-width;
-  text-align: center;
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  padding: 0 20px;
-}
-
-.recommendation-item {
-  width: max-width;
-  align-items: center;
-  display: flex;
-  flex-direction: row;
-  margin-bottom: 10px;
-}
-
-.artist {
-  width: 300px;
-  text-align: center;
-}
-
-.number {
-  width: 300px;
-  text-align: center;
-}
-
-.song {
-  width: 300px;
-  text-align: center;
-}
-
-.inner {
-  text-align: center;
-}
-*/
-
-.App-header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  background-color: #f4f4f8; /* Soft neutral background */
-  color: #333; /* Readable text color */
-  font-family: 'Open Sans', sans-serif; /* Clean, modern font */
-}
-
-.personal-info {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  margin-top: 50px; /* Added margin to lower the text boxes */
   margin-bottom: 30px;
 }
 
-.personal-info input, .mood-input textarea {
+.personal-info input, .mood-input textarea, .personal-info select {
   width: 300px;
   padding: 12px;
   margin-bottom: 15px;
-  border: 2px solid #ccc;
+  border: 1px solid #3a5060; /* Adjusted for visibility */
+  background-color: #34495e; /* Darker input background */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Optional: Added box-shadow */
+  color: #fff; /* Text color for inputs */
   border-radius: 8px;
-  font-family: inherit; /* Consistent font */
+  font-family: inherit;
   text-align: left;
+  font-size: 16px; /* Increased font size for vividness */
+  font-weight: bold; /* Bold font for vividness */
 }
 
 .personal-info select {
   width: 327.63px; /* Adjust width to match input areas */
-  padding: 12px;
-  margin-bottom: 15px;
-  border: 2px solid #ccc;
-  border-radius: 8px;
-  font-family: inherit; /* Consistent font */
-  text-align: left;
 }
 
 select option[value=""][disabled] {
-  color: #ccc; /* Adjust the color to your preference */
+  color: #ccc;
 }
 
 .mood-input {
@@ -133,11 +66,14 @@ select option[value=""][disabled] {
   align-items: center;
   width: 100%;
   max-width: 800px; /* Centered content */
+  max-height: 500px;
+  overflow-y: auto;
   margin: auto;
   padding: 20px;
-  background-color: #fff; /* Cards background */
+  background-color: #34495e; /* Slightly lighter than input backgrounds for contrast */
   box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Subtle shadow for depth */
   border-radius: 16px; /* Rounded corners for cards */
+  color: #fff; /* Adjusted for better readability */
 }
 
 .recommendation-item {
@@ -151,11 +87,12 @@ select option[value=""][disabled] {
 .artist, .number, .song {
   text-align: center;
   margin: 0 10px;
+  color: #fff; /* Adjusted for better readability */
 }
 
 button {
   padding: 12px 20px;
-  background-color: #ff6f61; /* Vibrant accent color */
+  background-color: #307473; /* Vibrant accent color */
   color: #fff;
   border: none;
   border-radius: 20px;
@@ -166,7 +103,7 @@ button {
 }
 
 button:hover {
-  background-color: #ff9570; /* Slightly lighter on hover */
+  background-color: #408a8b; /* Slightly lighter on hover */
 }
 
 .inner {
@@ -174,6 +111,9 @@ button:hover {
 }
 
 @media (max-width: 768px) {
+  .App-header {
+    padding-top: 50px; /* Less space at the top on smaller screens */
+  }
   .personal-info input, .personal-info select, .mood-input textarea, .artist, .number, .song {
     width: 90%; /* Responsive width on smaller screens */
   }
