@@ -5,6 +5,7 @@ import AudioPlayer from "./AudioPlayer";
 function App() {
   // 存储用户输入和个人偏好的状态
   const [input, setInput] = useState('');
+  const [reflected_mood, setreflected_mood] = useState('');
   const [age, setAge] = useState('');
   const [mbti, setMbti] = useState('');
   const [gender, setGender] = useState('');
@@ -13,16 +14,82 @@ function App() {
   const [relationshipStatus, setRelationshipStatus] = useState('');
 
   const [recommendations, setRecommendations] = useState(''); // 存储音乐推荐的状态
+  const [recommendations_spotify, setRecommendations_spotify] = useState('');
 
   // 处理提交事件
   const handleSubmit = async () => {
+    const mood = await fetch('http://localhost:5000/api/analyze-mood', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ input, age, mbti, gender, job, zodiac, relationshipStatus }),
+    });
+    if (!mood.ok) {
+      // 如果请求失败，打印错误信息
+      console.error("Failed to fetch mood.");
+      return;
+    }
+    const mood_data = await mood.json();
+    const gpt_mood = mood_data.moodAnalysis;
+    console.log(mood_data.moodAnalysis);
+
+    const queryParams = new URLSearchParams({
+      mood: gpt_mood, // 假设 mood 通过 `input` 状态获取
+      age,
+      mbti,
+      gender,
+      job,
+      zodiac,
+      relationshipStatus,
+    }).toString();
+    console.log("still trying to get");
+    console.log(queryParams);
+    // 更新请求URL和方法
+    const response_from_spotify = await fetch(`http://localhost:5100/recommendations?${queryParams}`, {
+      method: 'GET', // 更改为GET请求
+    });
+    console.log(response_from_spotify);
+
+    if (!response_from_spotify.ok) {
+      console.error("Failed to fetch music recommendations.");
+      return;
+    }
+
+    const data_from_spotify = await response_from_spotify.json();
+
+    console.log(data_from_spotify);
+    // 假设响应数据已经是所需格式，无需转换
+    const tracksData = data_from_spotify;
+    tracksData.forEach(function (item) {
+      // 这里假设每个对象有一个名为name的属性
+      var name = item.name;
+
+      // 这里假设每个对象有一个名为value的属性
+      var value = item.artists[0].name;
+
+      // 现在你可以使用提取出来的数据进行任何你想要的操作
+      console.log("Name: " + name + ", Value: " + value);
+    });
+    // 将Spotify的推荐转换为歌曲名和歌手名的数组结构
+    const songArtistArray = tracksData.map(track => ({
+      songName: track.name,
+      artistNames: track.artists[0].name
+    }));
+
+    // 现在 songArtistArray 包含了歌曲名和对应的歌手名
+    const example_songs = songArtistArray.map(track => `${track.songName} by ${track.artistNames}`).join(", ");
+    console.log(example_songs);
+    setRecommendations_spotify(songArtistArray); // 假设后端直接返回 tracks 数组
+
+
     // 发送POST请求到你的后端API，包括用户输入和个人偏好信息
     const response = await fetch('http://localhost:5200/api/recommend-music', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ input, age, mbti, gender, job, zodiac, relationshipStatus }),
+      body: JSON.stringify({ input, age, mbti, gender, job, zodiac, relationshipStatus, example_songs }),
     });
 
     if (!response.ok) {
