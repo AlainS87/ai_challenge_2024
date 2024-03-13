@@ -6,11 +6,11 @@ const OpenAI = require("openai");
 
 // Initialize the OpenAI API with your API key
 const openai = new OpenAI({
-    apiKey: "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" // Ensure to replace this with your actual OpenAI API key
+    apiKey: "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" // Ensure to replace this with your actual OpenAI API key
 });
 
 const app = express();
-const port = 5000;
+const port = 5002;
 
 app.use(cors());
 app.use(express.json()); // Use express's built-in middleware

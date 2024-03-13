@@ -2,10 +2,13 @@ import React, { useState } from 'react';
 import './App.css';
 import AudioPlayer from "./AudioPlayer";
 import logo from "./img/logo.png";
+import DisplayTrack from './DisplayTrack';
+import SpotifyPlayer from "react-spotify-player";
 
 function App() {
   // 存储用户输入和个人偏好的状态
   const [input, setInput] = useState('');
+  const [uri, setUri] = useState('');
   const [reflected_mood, setreflected_mood] = useState('');
   const [age, setAge] = useState('');
   const [mbti, setMbti] = useState('');
@@ -19,7 +22,7 @@ function App() {
 
   // 处理提交事件
   const handleSubmit = async () => {
-    const mood = await fetch('http://localhost:5000/api/analyze-mood', {
+    const mood = await fetch('http://localhost:5002/api/analyze-mood', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -127,7 +130,13 @@ function App() {
     });
 
     const souldata = await spotify_search_response.json(); // 解析JSON响应
-    console.log(souldata);
+    console.log("start")
+    console.log(souldata)
+    var temp = souldata['playlistUri']
+    console.log(temp)
+    setUri(temp)
+    console.log(uri)
+    console.log("end")
     if (!spotify_search_response.ok) {
       // 如果请求失败，打印错误信息
       console.error("Failed to create list in spotify.");
@@ -135,6 +144,7 @@ function App() {
     }
   };
 
+  console.log(uri)
   return (
     <div className="App">
       <header className="App-header">
@@ -171,6 +181,7 @@ function App() {
             ))}
           </div>
         )}
+        <SpotifyPlayer uri={uri}/>
         <AudioPlayer />
       </header>
       <div className='panel'>

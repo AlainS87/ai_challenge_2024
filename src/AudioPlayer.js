@@ -3,10 +3,9 @@ import { useState, useEffect } from 'react';
 import { tracks } from './tracks';
 import WebPlayback from './WebPlayback'
 import Login from './login'
-import DisplayTrack from './DisplayTrack';
 
-const AudioPlayer = () => {
-    const [currentTrack, setCurrentTrack] = useState(tracks[0]);
+
+const AudioPlayer = (props) => {
     const [token, setToken] = useState('');
 
   useEffect(() => {
@@ -25,7 +24,12 @@ const AudioPlayer = () => {
 
   return (
     <>
-        { (token === '') ? <Login/> : <WebPlayback token={token} /> }
+        { (token === '') 
+        ? <Login/> 
+        : 
+        <div>
+            <WebPlayback token={token} />
+            </div> }
     </>
   );
 };

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-
 const track = {
     name: "",
     album: {
@@ -26,7 +25,7 @@ function WebPlayback(props) {
         script.async = true;
 
         document.body.appendChild(script);
-
+          
         window.onSpotifyWebPlaybackSDKReady = () => {
 
             const player = new window.Spotify.Player({
@@ -52,6 +51,7 @@ function WebPlayback(props) {
                 }
 
                 setTrack(state.track_window.current_track);
+                console.log(state.track_window.current_track)
                 setPaused(state.paused);
 
                 player.getCurrentState().then( state => { 
