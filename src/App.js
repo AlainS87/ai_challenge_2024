@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './App.css';
 import AudioPlayer from "./AudioPlayer";
 import logo from "./img/logo.png";
+import back_vid from "./video/starry_night.mp4"
 import DisplayTrack from './DisplayTrack';
 import SpotifyPlayer from "react-spotify-player";
 
@@ -22,7 +23,7 @@ function App() {
 
   // 处理提交事件
   const handleSubmit = async () => {
-    const mood = await fetch('http://localhost:5002/api/analyze-mood', {
+    const mood = await fetch('http://localhost:5000/api/analyze-mood', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -147,6 +148,12 @@ function App() {
   console.log(uri)
   return (
     <div className="App">
+      <video autoPlay muted loop className="background-video">
+        <source src={back_vid} type="video/mp4" />
+        Your browser does not support HTML5 video.
+      </video>
+
+
       <header className="App-header">
         <div className="personal-info">
           {/* 个人信息输入字段 */}
@@ -181,7 +188,7 @@ function App() {
             ))}
           </div>
         )}
-        <SpotifyPlayer uri={uri}/>
+        <SpotifyPlayer uri={uri} />
         <AudioPlayer />
       </header>
       <div className='panel'>
