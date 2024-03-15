@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './App.css';
 import AudioPlayer from "./AudioPlayer";
 import logo from "./img/logo.png";
+import back_vid from "./video/star2.mp4"
 import DisplayTrack from './DisplayTrack';
 import SpotifyPlayer from "react-spotify-player";
 
@@ -22,7 +23,7 @@ function App() {
 
   // 处理提交事件
   const handleSubmit = async () => {
-    const mood = await fetch('http://localhost:5002/api/analyze-mood', {
+    const mood = await fetch('http://localhost:5000/api/analyze-mood', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -147,50 +148,60 @@ function App() {
   console.log(uri)
   return (
     <div className="App">
-      <header className="App-header">
-        <div className="personal-info">
-          {/* 个人信息输入字段 */}
-          <input value={age} onChange={(e) => setAge(e.target.value)} placeholder="Age" />
-          <MBTISelect value={mbti} onChange={(e) => setMbti(e.target.value)} />
-          <GenderSelect value={gender} onChange={(e) => setGender(e.target.value)} />
-          <input value={job} onChange={(e) => setJob(e.target.value)} placeholder="Job" />
-          <ZodiacSelect value={zodiac} onChange={(e) => setZodiac(e.target.value)} />
-          <RelationshipSelect value={relationshipStatus} onChange={(e) => setRelationshipStatus(e.target.value)} />
-        </div>
-        <div className="mood-input">
-          {/* 用户心情描述输入框 */}
-          <textarea
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            placeholder="Describe your mood or scene..."
-            rows={4}
-          />
-        </div>
-        <button onClick={handleSubmit} style={{ padding: "10px 20px" }}>
-          Get Music Recommendations
-        </button>
-        {recommendations && (
-          <div className="recommendations">
-            <h3>Music Recommendations</h3>
-            {recommendations.map(({ number, song, artist }, index) => (
-              <div key={index} className="recommendation-item">
-                <span className="number">{number}</span>
-                <span className="song">{song}</span>
-                <span className="artist">{artist}</span>
-              </div>
-            ))}
+      <video autoPlay muted loop className="background-video">
+        <source src={back_vid} type="video/mp4" />
+        Your browser does not support HTML5 video.
+      </video>
+      <div className='container'>
+        <div className='panel'>
+          <img src={logo} alt="SoulSound Logo" className="logo" />
+          <div className="about-us">
+            <h2>About Us</h2>
           </div>
-        )}
-        <SpotifyPlayer uri={uri}/>
-        <AudioPlayer />
-      </header>
-      <div className='panel'>
-        <img src={logo} alt="SoulSound Logo" className="logo" />
-        <div className="about-us">
-          <h2>About Us</h2>
+          <div className="get-started">
+            <h2>Get Started</h2>
+          </div>
         </div>
-        <div className="get-started">
-          <h2>Get Started</h2>
+
+        <header className="App-header">
+          <div className="personal-info">
+            {/* 个人信息输入字段 */}
+            <input value={age} onChange={(e) => setAge(e.target.value)} placeholder="Age" />
+            <MBTISelect value={mbti} onChange={(e) => setMbti(e.target.value)} />
+            <GenderSelect value={gender} onChange={(e) => setGender(e.target.value)} />
+            <input value={job} onChange={(e) => setJob(e.target.value)} placeholder="Job" />
+            <ZodiacSelect value={zodiac} onChange={(e) => setZodiac(e.target.value)} />
+            <RelationshipSelect value={relationshipStatus} onChange={(e) => setRelationshipStatus(e.target.value)} />
+          </div>
+          <div className="mood-input">
+            {/* 用户心情描述输入框 */}
+            <textarea
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              placeholder="Describe your mood or scene..."
+              rows={4}
+            />
+          </div>
+          <button onClick={handleSubmit} style={{ padding: "10px 20px" }}>
+            Get Music Recommendations
+          </button>
+          {/* 
+          {recommendations && (
+            <div className="recommendations">
+              <h3>Music Recommendations</h3>
+              {recommendations.map(({ number, song, artist }, index) => (
+                <div key={index} className="recommendation-item">
+                  <span className="number">{number}</span>
+                  <span className="song">{song}</span>
+                  <span className="artist">{artist}</span>
+                </div>
+              ))}
+            </div>
+              )}*/}
+          <AudioPlayer />
+        </header>
+        <div className="listplayer">
+          <SpotifyPlayer uri={uri} />
         </div>
       </div>
     </div>

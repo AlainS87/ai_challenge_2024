@@ -1,0 +1,28 @@
+/* Login.css */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #1DB954;
+}
+
+.login-header {
+    text-align: center;
+}
+
+.btn-spotify {
+    display: inline-block;
+    background-color: #1ED760;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.btn-spotify:hover {
+    background-color: #1DB954;
+    cursor: pointer;
+}

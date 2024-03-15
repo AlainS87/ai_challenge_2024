@@ -1,31 +1,49 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+}
+
+
 .App-header {
+  width: 45%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  background: linear-gradient(145deg, #1d1e2e, #393759);
+  /*background: linear-gradient(145deg, #1d1e2e, #393759);
   /* Dark gradient background */
   color: #fff;
   /* Adjusted for better readability */
   font-family: 'Open Sans', sans-serif;
-  padding-top: 100px;
+  padding-top: 10px;
+  z-index: 1;
+}
+
+.listplayer {
+  padding: 20px;
+  margin-top: 80px;
+  width: 40%;
+}
+
+.SpotifyPlayer {
+  width: 400px;
+  /* 设置宽度为父元素的100% */
+  height: 600px;
+  /* 设置固定的高度，也可以使用百分比 */
 }
 
 .logo {
-  width: 250px;
-  left: -50px;
+  width: 100%;
   position: relative;
+  opacity: 1;
+  transform: scale(1.1);
 }
 
 .panel {
-  width: 250px;
+  width: 15%;
   /* Adjust width as needed */
-  background: linear-gradient(145deg, #1d1e2e, #393759);
-  position: fixed;
-  left: 0;
-  top: 0;
-  bottom: 0;
+  background: linear-gradient(145deg, rgba(29, 30, 46, 0.7), rgba(57, 55, 89, 0.7));
   overflow-y: auto;
   padding: 20px;
   /* Adjust padding as needed */
@@ -33,6 +51,7 @@
 }
 
 .about-us,
+
 .get-started {
   color: #fff;
   display: flex;
@@ -59,6 +78,7 @@
   /* Show pointer cursor on hover */
   transition: background-color 0.3s ease;
   /* Smooth transition for background color */
+  opacity: 1;
 }
 
 .about-us h2,
@@ -66,6 +86,7 @@
   margin-top: 0;
   /* Remove default margin */
   margin-bottom: 0;
+  opacity: 1;
 }
 
 .personal-info {
@@ -198,4 +219,17 @@ button:hover {
     width: 90%;
     /* Responsive width on smaller screens */
   }
+}
+
+.background-video {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  width: 100vw;
+  /* 视口宽度 */
+  height: 100vh;
+  /* 视口高度 */
+  z-index: -1;
+  object-fit: cover;
+  /* 确保视频覆盖并保持宽高比 */
 }

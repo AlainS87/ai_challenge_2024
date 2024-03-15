@@ -12,8 +12,8 @@ global.access_token = ''
 
 dotenv.config()
 
-var spotify_client_id = '1c27044e7be34f178070d65ad3b29d5a'
-var spotify_client_secret = 'e05ae2218c0a40c5a275dade48f59d3d'
+var spotify_client_id = '87fdf22afba448b5a906039359ba4630'
+var spotify_client_secret = '72db1e5be9414939b5fa695ebdc76e48'
 
 var spotify_redirect_uri = 'http://localhost:3000/auth/callback'
 
@@ -367,7 +367,7 @@ app.post('/create-playlist', async (req, res) => {
       message: '播放列表创建成功',
       playlistId: playlist.body.id,
       playlistUrl: playlist.body.external_urls.spotify,
-      playlistUri:playlist.body.uri
+      playlistUri: playlist.body.uri
     });
   } catch (error) {
     console.error('创建播放列表时发生错误:', error);
