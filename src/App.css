@@ -22,7 +22,7 @@
 
 .listplayer {
   padding: 20px;
-  margin-top: 80px;
+  margin-top: 30px;
   width: 40%;
 }
 
@@ -53,14 +53,15 @@
 .about-us,
 
 .get-started {
-  color: #fff;
+  height: 15px;
+  color: #ffffff;
   display: flex;
   /* Use flexbox to center align content */
   flex-direction: column;
   /* Stack content vertically */
-  justify-content: left;
+  justify-content: center;
   /* Center content vertically */
-  align-items: left;
+  align-items: center;
   /* Center content horizontally */
   margin-bottom: 20px;
   /* Add margin between sections */
@@ -70,7 +71,9 @@
   /* Add border around the sections */
   border-radius: 8px;
   /* Add border radius for rounded corners */
-  background-color: #307473;
+  background-color: #09928e;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 13px;
   /* Background color of the "button" */
   text-align: left;
   /* Center align text */
@@ -78,7 +81,7 @@
   /* Show pointer cursor on hover */
   transition: background-color 0.3s ease;
   /* Smooth transition for background color */
-  opacity: 1;
+  opacity: 0.9;
 }
 
 .about-us h2,
@@ -86,7 +89,12 @@
   margin-top: 0;
   /* Remove default margin */
   margin-bottom: 0;
-  opacity: 1;
+}
+
+.about-us:hover,
+.get-started:hover {
+  background-color: #11b0ab;
+  /* Slightly lighter on hover */
 }
 
 .personal-info {
@@ -104,30 +112,57 @@
   width: 300px;
   padding: 12px;
   margin-bottom: 15px;
-  border: 1px solid #3a5060;
-  /* Adjusted for visibility */
-  background-color: #34495e;
-  /* Darker input background */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  /* Optional: Added box-shadow */
-  color: #fff;
-  /* Text color for inputs */
+  border: 1px solid #2a147e;
+  /* 调整边框颜色为亮绿色，增加活力 */
+  background-image: linear-gradient(to right, #09928e, #18116c);
+  /* 输入框背景设置为渐变色，模拟极光效果 */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  /* 增加阴影的模糊度和扩散范围，增强立体感 */
+  color: #ffffff;
+  /* 保持文本颜色为白色，以保证在深色背景上的可读性 */
   border-radius: 8px;
-  font-family: inherit;
+  /* 保持边角的圆滑 */
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  /* 使用更现代的字体 */
   text-align: left;
   font-size: 16px;
-  /* Increased font size for vividness */
-  font-weight: bold;
-  /* Bold font for vividness */
+  /* 保持字体大小，确保清晰度 */
+  /*font-weight: bold;*/
+  /* 加粗字体，增加文本的突出显示 */
+  outline: none;
+  /* 移除聚焦时的轮廓，保持美观 */
+  transition: box-shadow 0.3s ease-in-out;
+  opacity: 0.9;
+  /* 添加过渡效果，使阴影变化更平滑 */
+}
+
+.mood-input textarea::placeholder {
+  color: #ffffff;
+  opacity: 1;
+}
+
+.personal-info input::placeholder {
+  color: #ffffff;
+  opacity: 1;
+}
+
+.personal-info input:focus,
+.mood-input textarea:focus,
+.personal-info select:focus {
+  box-shadow: 0 0 15px 10px rgba(0, 255, 255, 0.8);
+  /* 聚焦时增加明亮的蓝色光晕，增强极光效果 */
 }
 
 .personal-info select {
+  background-color: #09928e;
   width: 327.63px;
   /* Adjust width to match input areas */
 }
 
 select option[value=""][disabled] {
-  color: #ccc;
+  background-color: #09928e;
+  color: #ffffff;
+  opacity: 1;
 }
 
 .mood-input {
@@ -135,10 +170,24 @@ select option[value=""][disabled] {
   justify-content: center;
 }
 
+.buttonArea {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.recommendation_button {
+  width: 100%;
+  height: 90%;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
 .mood-input textarea {
   width: 300px;
   padding: 12px;
-  margin-top: 30px;
+  margin-top: 0px;
   height: 100px;
   /* Larger area for mood description */
 }
@@ -183,20 +232,20 @@ select option[value=""][disabled] {
 
 button {
   padding: 12px 20px;
-  background-color: #307473;
+  background-color: #09928e;
   /* Vibrant accent color */
   color: #fff;
   border: none;
   border-radius: 20px;
   cursor: pointer;
   font-size: 16px;
-  font-weight: bold;
   transition: background-color 0.3s ease;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   /* Smooth transition for button */
 }
 
 button:hover {
-  background-color: #408a8b;
+  background-color: #0eb9b3;
   /* Slightly lighter on hover */
 }
 

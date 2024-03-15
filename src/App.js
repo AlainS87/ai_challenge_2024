@@ -9,7 +9,7 @@ import SpotifyPlayer from "react-spotify-player";
 function App() {
   // 存储用户输入和个人偏好的状态
   const [input, setInput] = useState('');
-  const [uri, setUri] = useState('');
+  const [uri, setUri] = useState('https://open.spotify.com/embed/playlist/3IMnb5InWV1OGUwsYKOMRk?utm_source=generator');
   const [reflected_mood, setreflected_mood] = useState('');
   const [age, setAge] = useState('');
   const [mbti, setMbti] = useState('');
@@ -161,6 +161,7 @@ function App() {
           <div className="get-started">
             <h2>Get Started</h2>
           </div>
+          <AudioPlayer />
         </div>
 
         <header className="App-header">
@@ -172,19 +173,21 @@ function App() {
             <input value={job} onChange={(e) => setJob(e.target.value)} placeholder="Job" />
             <ZodiacSelect value={zodiac} onChange={(e) => setZodiac(e.target.value)} />
             <RelationshipSelect value={relationshipStatus} onChange={(e) => setRelationshipStatus(e.target.value)} />
+            <div className="mood-input">
+              {/* 用户心情描述输入框 */}
+              <textarea
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                placeholder="Describe your mood or scene..."
+                rows={4}
+              />
+            </div>
+            <div className='buttonArea'>
+              <button className='recommendation_button' onClick={handleSubmit} style={{ padding: "10px 20px" }}>
+                Get Music Recommendations
+              </button>
+            </div>
           </div>
-          <div className="mood-input">
-            {/* 用户心情描述输入框 */}
-            <textarea
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              placeholder="Describe your mood or scene..."
-              rows={4}
-            />
-          </div>
-          <button onClick={handleSubmit} style={{ padding: "10px 20px" }}>
-            Get Music Recommendations
-          </button>
           {/* 
           {recommendations && (
             <div className="recommendations">
@@ -198,7 +201,6 @@ function App() {
               ))}
             </div>
               )}*/}
-          <AudioPlayer />
         </header>
         <div className="listplayer">
           <SpotifyPlayer uri={uri} />

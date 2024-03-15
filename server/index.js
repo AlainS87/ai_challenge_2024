@@ -341,7 +341,7 @@ app.post('/create-playlist', async (req, res) => {
   try {
     // 创建一个空的播放列表
     const playlist = await spotifyApi.createPlaylist(playlistName, {
-      description: '通过ChatGPT推荐的歌曲列表',
+      description: 'Recommendations From Soul Sound',
       public: true // 或根据需要将其设置为false
     });
 

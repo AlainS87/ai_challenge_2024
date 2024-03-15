@@ -6,7 +6,7 @@ import Login from './login'
 
 
 const AudioPlayer = (props) => {
-    const [token, setToken] = useState('');
+  const [token, setToken] = useState('');
 
   useEffect(() => {
 
@@ -24,12 +24,12 @@ const AudioPlayer = (props) => {
 
   return (
     <>
-        { (token === '') 
-        ? <Login/> 
-        : 
+      {(token === '')
+        ? <Login />
+        :
         <div>
-            <WebPlayback token={token} />
-            </div> }
+          <WebPlayback token={token} />
+        </div>}
     </>
   );
 };
