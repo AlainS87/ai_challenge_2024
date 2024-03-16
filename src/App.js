@@ -1,16 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import AudioPlayer from "./AudioPlayer";
 import logo from "./img/logo.png";
 import back_vid from "./video/star2.mp4"
-import DisplayTrack from './DisplayTrack';
+import Login from './login';
+import WebPlayback from './WebPlayback';
 import SpotifyPlayer from "react-spotify-player";
 
 function App() {
   // 存储用户输入和个人偏好的状态
   const [input, setInput] = useState('');
   const [uri, setUri] = useState('https://open.spotify.com/embed/playlist/3IMnb5InWV1OGUwsYKOMRk?utm_source=generator');
-  const [reflected_mood, setreflected_mood] = useState('');
+  const [token, setToken] = useState('');
   const [age, setAge] = useState('');
   const [mbti, setMbti] = useState('');
   const [gender, setGender] = useState('');
@@ -145,7 +146,20 @@ function App() {
     }
   };
 
-  console.log(uri)
+  useEffect(() => {
+
+    async function getToken() {
+      console.log("start fetching response")
+      const response = await fetch('/auth/token');
+      console.log(response)
+      const json = await response.json();
+      setToken(json.access_token);
+    }
+
+    getToken();
+
+  }, []);
+
   return (
     <div className="App">
       <video autoPlay muted loop className="background-video">
@@ -161,7 +175,15 @@ function App() {
           <div className="get-started">
             <h2>Get Started</h2>
           </div>
-          <AudioPlayer />
+          <>
+            {(token === '')
+            ? <Login />
+            :
+            <div>
+              <h3>Login successfully!</h3>
+              <h3>Welcome to soul sound!</h3>
+            </div>}
+          </>
         </div>
 
         <header className="App-header">
@@ -204,6 +226,12 @@ function App() {
         </header>
         <div className="listplayer">
           <SpotifyPlayer uri={uri} />
+          {(token === '')
+            ? <h3>Please login with your spotify account!</h3>
+            :
+            <div>
+              <WebPlayback token={token}/>
+            </div>}
         </div>
       </div>
     </div>
