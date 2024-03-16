@@ -1,83 +1,168 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+}
+
+
 .App-header {
+  width: 45%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  background: linear-gradient(145deg, #1d1e2e, #393759); /* Dark gradient background */
-  color: #fff; /* Adjusted for better readability */
+  /*background: linear-gradient(145deg, #1d1e2e, #393759);
+  /* Dark gradient background */
+  color: #fff;
+  /* Adjusted for better readability */
   font-family: 'Open Sans', sans-serif;
-  padding-top: 100px;
+  padding-top: 10px;
+  z-index: 1;
 }
 
-.logo { 
-  width: 250px;
-  left: -50px;
+.listplayer {
+  padding: 20px;
+  margin-top: 30px;
+  width: 40%;
+}
+
+.SpotifyPlayer {
+  width: 400px;
+  /* 设置宽度为父元素的100% */
+  height: 600px;
+  /* 设置固定的高度，也可以使用百分比 */
+}
+
+.logo {
+  width: 100%;
   position: relative;
+  opacity: 1;
+  transform: scale(1.1);
 }
 
 .panel {
-  width: 250px; /* Adjust width as needed */
-  background: linear-gradient(145deg, #1d1e2e, #393759);
-  position: fixed;
-  left: 0;
-  top: 0;
-  bottom: 0;
+  width: 15%;
+  /* Adjust width as needed */
+  background: linear-gradient(145deg, rgba(29, 30, 46, 0.7), rgba(57, 55, 89, 0.7));
   overflow-y: auto;
-  padding: 20px; /* Adjust padding as needed */
+  padding: 20px;
+  /* Adjust padding as needed */
   box-sizing: border-box;
 }
 
-.about-us, .get-started {
-  color: #fff;
-  display: flex; /* Use flexbox to center align content */
-  flex-direction: column; /* Stack content vertically */
-  justify-content: left; /* Center content vertically */
-  align-items: left; /* Center content horizontally */
-  margin-bottom: 20px; /* Add margin between sections */
-  padding: 20px; /* Add padding to create space inside the box */
-  border: 2px solid #fff; /* Add border around the sections */
-  border-radius: 8px; /* Add border radius for rounded corners */
-  background-color: #307473; /* Background color of the "button" */
-  text-align: left; /* Center align text */
-  cursor: pointer; /* Show pointer cursor on hover */
-  transition: background-color 0.3s ease; /* Smooth transition for background color */
+.about-us,
+
+.get-started {
+  height: 15px;
+  color: #ffffff;
+  display: flex;
+  /* Use flexbox to center align content */
+  flex-direction: column;
+  /* Stack content vertically */
+  justify-content: center;
+  /* Center content vertically */
+  align-items: center;
+  /* Center content horizontally */
+  margin-bottom: 20px;
+  /* Add margin between sections */
+  padding: 20px;
+  /* Add padding to create space inside the box */
+  border: 2px solid #fff;
+  /* Add border around the sections */
+  border-radius: 8px;
+  /* Add border radius for rounded corners */
+  background-color: #09928e;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 13px;
+  /* Background color of the "button" */
+  text-align: left;
+  /* Center align text */
+  cursor: pointer;
+  /* Show pointer cursor on hover */
+  transition: background-color 0.3s ease;
+  /* Smooth transition for background color */
+  opacity: 0.9;
 }
 
-.about-us h2, .get-started h2 {
-  margin-top: 0; /* Remove default margin */
+.about-us h2,
+.get-started h2 {
+  margin-top: 0;
+  /* Remove default margin */
   margin-bottom: 0;
+}
+
+.about-us:hover,
+.get-started:hover {
+  background-color: #11b0ab;
+  /* Slightly lighter on hover */
 }
 
 .personal-info {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin-top: 50px; /* Added margin to lower the text boxes */
+  margin-top: 50px;
+  /* Added margin to lower the text boxes */
   margin-bottom: 30px;
 }
 
-.personal-info input, .mood-input textarea, .personal-info select {
+.personal-info input,
+.mood-input textarea,
+.personal-info select {
   width: 300px;
   padding: 12px;
   margin-bottom: 15px;
-  border: 1px solid #3a5060; /* Adjusted for visibility */
-  background-color: #34495e; /* Darker input background */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Optional: Added box-shadow */
-  color: #fff; /* Text color for inputs */
+  border: 1px solid #2a147e;
+  /* 调整边框颜色为亮绿色，增加活力 */
+  background-image: linear-gradient(to right, #09928e, #18116c);
+  /* 输入框背景设置为渐变色，模拟极光效果 */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  /* 增加阴影的模糊度和扩散范围，增强立体感 */
+  color: #ffffff;
+  /* 保持文本颜色为白色，以保证在深色背景上的可读性 */
   border-radius: 8px;
-  font-family: inherit;
+  /* 保持边角的圆滑 */
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  /* 使用更现代的字体 */
   text-align: left;
-  font-size: 16px; /* Increased font size for vividness */
-  font-weight: bold; /* Bold font for vividness */
+  font-size: 16px;
+  /* 保持字体大小，确保清晰度 */
+  /*font-weight: bold;*/
+  /* 加粗字体，增加文本的突出显示 */
+  outline: none;
+  /* 移除聚焦时的轮廓，保持美观 */
+  transition: box-shadow 0.3s ease-in-out;
+  opacity: 0.9;
+  /* 添加过渡效果，使阴影变化更平滑 */
+}
+
+.mood-input textarea::placeholder {
+  color: #ffffff;
+  opacity: 1;
+}
+
+.personal-info input::placeholder {
+  color: #ffffff;
+  opacity: 1;
+}
+
+.personal-info input:focus,
+.mood-input textarea:focus,
+.personal-info select:focus {
+  box-shadow: 0 0 15px 10px rgba(0, 255, 255, 0.8);
+  /* 聚焦时增加明亮的蓝色光晕，增强极光效果 */
 }
 
 .personal-info select {
-  width: 327.63px; /* Adjust width to match input areas */
+  background-color: #09928e;
+  width: 327.63px;
+  /* Adjust width to match input areas */
 }
 
 select option[value=""][disabled] {
-  color: #ccc;
+  background-color: #09928e;
+  color: #ffffff;
+  opacity: 1;
 }
 
 .mood-input {
@@ -85,11 +170,26 @@ select option[value=""][disabled] {
   justify-content: center;
 }
 
+.buttonArea {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.recommendation_button {
+  width: 100%;
+  height: 90%;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
 .mood-input textarea {
   width: 300px;
   padding: 12px;
-  margin-top: 30px;
-  height: 100px; /* Larger area for mood description */
+  margin-top: 0px;
+  height: 100px;
+  /* Larger area for mood description */
 }
 
 .recommendations {
@@ -97,15 +197,20 @@ select option[value=""][disabled] {
   flex-direction: column;
   align-items: center;
   width: 100%;
-  max-width: 800px; /* Centered content */
+  max-width: 800px;
+  /* Centered content */
   max-height: 500px;
   overflow-y: auto;
   margin: auto;
   padding: 20px;
-  background-color: #34495e; /* Slightly lighter than input backgrounds for contrast */
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Subtle shadow for depth */
-  border-radius: 16px; /* Rounded corners for cards */
-  color: #fff; /* Adjusted for better readability */
+  background-color: #34495e;
+  /* Slightly lighter than input backgrounds for contrast */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* Subtle shadow for depth */
+  border-radius: 16px;
+  /* Rounded corners for cards */
+  color: #fff;
+  /* Adjusted for better readability */
 }
 
 .recommendation-item {
@@ -116,26 +221,32 @@ select option[value=""][disabled] {
   margin-bottom: 10px;
 }
 
-.artist, .number, .song {
+.artist,
+.number,
+.song {
   text-align: center;
   margin: 0 10px;
-  color: #fff; /* Adjusted for better readability */
+  color: #fff;
+  /* Adjusted for better readability */
 }
 
 button {
   padding: 12px 20px;
-  background-color: #307473; /* Vibrant accent color */
+  background-color: #09928e;
+  /* Vibrant accent color */
   color: #fff;
   border: none;
   border-radius: 20px;
   cursor: pointer;
   font-size: 16px;
-  font-weight: bold;
-  transition: background-color 0.3s ease; /* Smooth transition for button */
+  transition: background-color 0.3s ease;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  /* Smooth transition for button */
 }
 
 button:hover {
-  background-color: #408a8b; /* Slightly lighter on hover */
+  background-color: #0eb9b3;
+  /* Slightly lighter on hover */
 }
 
 .inner {
@@ -144,9 +255,36 @@ button:hover {
 
 @media (max-width: 768px) {
   .App-header {
-    padding-top: 50px; /* Less space at the top on smaller screens */
+    padding-top: 50px;
+    /* Less space at the top on smaller screens */
   }
-  .personal-info input, .personal-info select, .mood-input textarea, .artist, .number, .song {
-    width: 90%; /* Responsive width on smaller screens */
+
+  .personal-info input,
+  .personal-info select,
+  .mood-input textarea,
+  .artist,
+  .number,
+  .song {
+    width: 90%;
+    /* Responsive width on smaller screens */
   }
+}
+
+.background-video {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  width: 100vw;
+  /* 视口宽度 */
+  height: 100vh;
+  /* 视口高度 */
+  z-index: -1;
+  object-fit: cover;
+  /* 确保视频覆盖并保持宽高比 */
+}
+
+.spotify-login {
+  color: #b0d3e3;
+  font-family: "Arial";
+  text-align: center;
 }

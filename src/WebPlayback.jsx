@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-
+import './webplayer.css';
 const track = {
     name: "",
     album: {
@@ -26,7 +26,7 @@ function WebPlayback(props) {
         script.async = true;
 
         document.body.appendChild(script);
-
+          
         window.onSpotifyWebPlaybackSDKReady = () => {
 
             const player = new window.Spotify.Player({
@@ -52,6 +52,7 @@ function WebPlayback(props) {
                 }
 
                 setTrack(state.track_window.current_track);
+                console.log(state.track_window.current_track)
                 setPaused(state.paused);
 
                 player.getCurrentState().then( state => { 
@@ -70,7 +71,7 @@ function WebPlayback(props) {
             <>
                 <div className="container">
                     <div className="main-wrapper">
-                        <b> Instance not active. Transfer your playback using your Spotify app </b>
+                        <h3 className='login-text'> Instance not active. Transfer your playback using your Spotify app </h3>
                     </div>
                 </div>
             </>)
@@ -85,18 +86,19 @@ function WebPlayback(props) {
                         <div className="now-playing__side">
                             <div className="now-playing__name">{current_track.name}</div>
                             <div className="now-playing__artist">{current_track.artists[0].name}</div>
+                            <div className='btn'>
+                                <button className="btn-spotify" onClick={() => { player.previousTrack() }} >
+                                    &lt;&lt;
+                                </button>
 
-                            <button className="btn-spotify" onClick={() => { player.previousTrack() }} >
-                                &lt;&lt;
-                            </button>
+                                <button className="btn-spotify" onClick={() => { player.togglePlay() }} >
+                                    { is_paused ? "PLAY" : "PAUSE" }
+                                </button>
 
-                            <button className="btn-spotify" onClick={() => { player.togglePlay() }} >
-                                { is_paused ? "PLAY" : "PAUSE" }
-                            </button>
-
-                            <button className="btn-spotify" onClick={() => { player.nextTrack() }} >
-                                &gt;&gt;
-                            </button>
+                                <button className="btn-spotify" onClick={() => { player.nextTrack() }} >
+                                    &gt;&gt;
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
