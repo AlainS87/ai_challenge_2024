@@ -1,22 +1,40 @@
 .container {
   display: flex;
-  justify-content: space-between;
+  flex-direction: row; /* Change to row to align children side by side */
+  align-items: start; /* Align children to the start vertically */
+  justify-content: center; /* Center children horizontally if there is extra space */
+  width: 100%; /* Full width */
+  flex-wrap: wrap; /* Allows children to wrap onto next line if space is insufficient */
+}
+
+.content {
+  display: flex;
+  justify-content: space-around; /* Space around the children */
+  align-items: flex-start; /* Align children to the top */
+  width: 100%; /* Full width */
+  max-width: 1200px; /* Or your preferred max width */
+  margin-top: 150px; /* Space from the top */
+  gap: 30px; /* Gap between personal-info and listplayer */
+}
+
+.personal-info, .listplayer {
+  flex: 1; /* Flex grow equally */
+  min-width: 300px; /* Minimum width before wrapping */
+  max-width: calc(50% - 15px); /* Adjust width to account for gap */
 }
 
 
 .App-header {
-  width: 45%;
+  width: 45%; /* Adjust as needed to match Spotify panel */
+  margin-top: 30px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  /*background: linear-gradient(145deg, #1d1e2e, #393759);
-  /* Dark gradient background */
   color: #fff;
-  /* Adjusted for better readability */
   font-family: 'Open Sans', sans-serif;
-  padding-top: 10px;
+  padding: 10px;
   z-index: 1;
 }
 
@@ -48,9 +66,18 @@
   padding: 20px;
   /* Adjust padding as needed */
   box-sizing: border-box;
+  position: fixed;
+  left: -15%; /* Start off-screen to the left */
+  transition: left 0.5s ease; /* Animation for sliding in and out */
+  top: 0;
+  bottom: 0;
+  height: 100vh; /* Set the sidebar to fill the entire height of the viewport */
+  z-index: 2; /* Ensure the sidebar is above other content */
 }
 
-.about-us,
+.panel-visible {
+  left: 0; /* Bring the sidebar into view */
+}
 
 .get-started {
   height: 15px;
@@ -287,4 +314,34 @@ button:hover {
   color: #b0d3e3;
   font-family: "Arial";
   text-align: center;
+}
+
+.instructions {
+  font-size: 2em; /* Bigger text */
+  font-family: 'Arial', sans-serif; /* Change the font-family to your preference */
+  line-height: 1.6; /* Adjust line spacing */
+  color: #fff; /* Just an example to change text color to white */
+  text-align: left; /* Align text to the left */
+  margin: 20px 0; /* Adds space above and below the text */
+  max-width: 800px; /* Set a max-width for better readability */
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.instructions ul {
+  list-style-type: disc; /* Use disc for bullet points */
+  padding-left: 20px; /* Add padding for the bullet points */
+  padding-top: 20px;
+}
+
+.logo-container {
+  position: absolute;
+  top: 10px;  /* Adjust as needed for padding from the top */
+  left: 5px;  /* Adjust as needed for padding from the left */
+}
+
+.get-started-logo {
+  width: 300px;  /* Or however large you want the logo to be */
+  height: auto;  /* Keeps the aspect ratio intact */
 }

@@ -6,14 +6,14 @@ const SpotifyWebApi = require('spotify-web-api-node');
 
 // 在其他中间件注册之前注册 CORS 中间件
 
-const port = 5100
+const port = 5003
 
 global.access_token = ''
 
 dotenv.config()
 
-var spotify_client_id = '87fdf22afba448b5a906039359ba4630'
-var spotify_client_secret = '72db1e5be9414939b5fa695ebdc76e48'
+var spotify_client_id = 'e4443cf14fd644a6b7460c3ee6cfc9a4'
+var spotify_client_secret = '834f9e4b82364248bafa9aa87c965d95'
 
 var spotify_redirect_uri = 'http://localhost:3000/auth/callback'
 
