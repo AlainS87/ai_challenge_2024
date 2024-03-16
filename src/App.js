@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import AudioPlayer from "./AudioPlayer";
 import logo from "./img/logo.png";
 import back_vid from "./video/star2.mp4"
 import Login from './login';
@@ -175,7 +174,7 @@ function App() {
           <div className="get-started">
             <h2>Get Started</h2>
           </div>
-          <>
+          <div className='spotify-login'>
             {(token === '')
             ? <Login />
             :
@@ -183,7 +182,7 @@ function App() {
               <h3>Login successfully!</h3>
               <h3>Welcome to soul sound!</h3>
             </div>}
-          </>
+          </div>
         </div>
 
         <header className="App-header">

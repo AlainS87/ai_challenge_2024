@@ -1,0 +1,88 @@
+
+.spotify-main-wrapper {
+    padding-top: 45px;
+    align-items: center;
+    display: flex;
+    height: 100%;
+    margin: 0 auto;
+    justify-content: center;
+    position: relative;
+    width: 80%;
+    z-index: 1;
+  }
+  
+.spotify-container {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    height: 100%;
+  }
+  
+.spotify-main-container {
+    flex: 1;
+  }
+  
+.login-text {
+    color: #b0d3e3;
+    font-family: "Arial";
+  }
+  
+.now-playing__name {
+    font-size: 1.1em;
+    color: #e8f0f3;
+    text-align: center;
+    width: 400px;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-bottom: 0.2em;
+  }
+  
+.now-playing__artist {
+    margin-bottom: 1em;
+    color: #e8f0f3;
+    width: 400px;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  
+.now-playing__status {
+    margin-bottom: 1em;
+  }
+  
+.now-playing__cover {
+    border-radius: 8px;
+    float: left;
+    margin-right: 10px;
+    text-align: right;
+    width: 400px;
+    height: 400px;
+  }
+  
+.now-playing__side {
+    margin-left: 2%;
+    width: 45%;
+  }
+  
+.btn-spotify {
+    background-color:#33b8b3;
+    border-radius:28px;
+    border:1px solid #33b8b3;
+    display:inline-block;
+    cursor:pointer;
+    color:#dae9eb;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:13px;
+    text-decoration:none;
+    text-shadow:0px 1px 0px #33b8b3;
+  }
+
+.btn-spotify:active {
+    position: relative;
+    background-color:#33b8b3;
+    top:1px;
+}
+.btn {
+    display:flex;
+    justify-content: center;
+}
+
+  

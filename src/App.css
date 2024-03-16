@@ -282,3 +282,9 @@ button:hover {
   object-fit: cover;
   /* 确保视频覆盖并保持宽高比 */
 }
+
+.spotify-login {
+  color: #b0d3e3;
+  font-family: "Arial";
+  text-align: center;
+}
