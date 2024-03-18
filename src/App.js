@@ -251,11 +251,11 @@ function MainPage() {
            <div className="listplayer">
              {/* Spotify player and related content */}
              <SpotifyPlayer uri={uri} size={{ width: '100%', height: 300 }} />
-             {(token === '')
+             {/*{(token === '')
                ? <h3>Please login with your spotify account!</h3>
                : <div>
                    <WebPlayback token={token}/>
-                 </div>}
+   </div>}*/}
            </div>
          </div>
        </div>

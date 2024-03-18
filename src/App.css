@@ -40,7 +40,7 @@
 
 .listplayer {
   padding: 20px;
-  margin-top: 30px;
+  margin-top: 40px;
   width: 40%;
 }
 
@@ -320,10 +320,10 @@ button:hover {
   font-size: 2em; /* Bigger text */
   font-family: 'Arial', sans-serif; /* Change the font-family to your preference */
   line-height: 1.6; /* Adjust line spacing */
-  color: #fff; /* Just an example to change text color to white */
-  text-align: left; /* Align text to the left */
+  color: #b5fffd; /* Just an example to change text color to white */
+  text-align: justify; /* Align text to the left */
   margin: 20px 0; /* Adds space above and below the text */
-  max-width: 800px; /* Set a max-width for better readability */
+  max-width: 1000px; /* Set a max-width for better readability */
   margin-top: 20px;
   margin-left: auto;
   margin-right: auto;
