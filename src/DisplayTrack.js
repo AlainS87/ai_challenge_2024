@@ -1,10 +1,25 @@
 import React from "react";
-const DisplayTrack = ({ currentTrack }) => {
+import SpotifyPlayer from "react-spotify-player";
+import { useState, useEffect } from 'react';
+
+const DisplayTrack = ({currentUri}) => {
+    const [uri, setUri] = useState();
+    useEffect(() => {
+        setUri(currentUri)
+      }, []);
+    console.log(uri === undefined)
+    console.log(currentUri)
     return (
-      <div>
-        <h3>default music</h3>
-        <audio src={currentTrack.src} controls/>
-      </div>
+        <>
+        { (uri === undefined) 
+        ? <div>
+            <p> not ready</p>
+        </div>
+        : 
+        <div>
+            <SpotifyPlayer uri={uri}/>
+            </div> }
+        </>
     );
   };
 export default DisplayTrack;
