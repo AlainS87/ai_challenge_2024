@@ -196,69 +196,71 @@ function MainPage() {
   };
 
   return (
-    <div className="App">
-      <video autoPlay muted loop className="background-video">
-        <source src={back_vid} type="video/mp4" />
-        Your browser does not support HTML5 video.
-      </video>
-      <div className='container'>
-        <div
-          className={`panel ${isSidebarVisible ? 'panel-visible' : ''}`}
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
-        >
-          <img src={logo} alt="SoulSound Logo" className="logo" />
-          <div className="get-started">
-            <Link to="/get-started">
-              <h2>Get Started</h2>
-            </Link>
-          </div>
-          <div className='spotify-login'>
-            {(token === '')
-              ? <Login />
-              :
-              <div>
-                <h3>Login successfully!</h3>
-                <h3>Welcome to soul sound!</h3>
-              </div>}
-          </div>
-        </div>
-        <div className="content">
-          <header className="App-header">
-            {/* Personal info input fields and other content */}
-            <div className="personal-info">
-              <input value={age} onChange={(e) => setAge(e.target.value)} placeholder="Age" />
-              <MBTISelect value={mbti} onChange={(e) => setMbti(e.target.value)} />
-              <GenderSelect value={gender} onChange={(e) => setGender(e.target.value)} />
-              <input value={job} onChange={(e) => setJob(e.target.value)} placeholder="Job" />
-              <ZodiacSelect value={zodiac} onChange={(e) => setZodiac(e.target.value)} />
-              <RelationshipSelect value={relationshipStatus} onChange={(e) => setRelationshipStatus(e.target.value)} />
-              <div className="mood-input">
-                <textarea
-                  value={input}
-                  onChange={(e) => setInput(e.target.value)}
-                  placeholder="Describe your mood or scene..."
-                  rows={4}
-                />
-              </div>
-              <div className='buttonArea'>
-                <button className='recommendation_button' onClick={handleSubmit} style={{ padding: "10px 20px" }}>
-                  Get Music Recommendations
-                </button>
-              </div>
+    <div className='entire'>
+      <div className="App">
+        <video autoPlay muted loop className="background-video">
+          <source src={back_vid} type="video/mp4" />
+          Your browser does not support HTML5 video.
+        </video>
+        <div className='container'>
+          <div
+            className={`panel ${isSidebarVisible ? 'panel-visible' : ''}`}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+          >
+            <img src={logo} alt="SoulSound Logo" className="logo" />
+            <div className="get-started">
+              <Link to="/get-started">
+                <h2>Get Started</h2>
+              </Link>
             </div>
-          </header>
-          <div className="listplayer">
-            {/* Spotify player and related content */}
-            <SpotifyPlayer uri={uri} size={{ width: '100%', height: 300 }} />
-            {/*{(token === '')
-               ? <h3>Please login with your spotify account!</h3>
-               : <div>
-                   <WebPlayback token={token}/>
-   </div>}*/}
+            <div className='spotify-login'>
+              {(token === '')
+                ? <Login />
+                :
+                <div>
+                  <h3>Login successfully!</h3>
+                  <h3>Welcome to soul sound!</h3>
+                </div>}
+            </div>
+          </div>
+          <div className="content">
+            <header className="App-header">
+              {/* Personal info input fields and other content */}
+              <div className="personal-info">
+                <input value={age} onChange={(e) => setAge(e.target.value)} placeholder="Age" />
+                <MBTISelect value={mbti} onChange={(e) => setMbti(e.target.value)} />
+                <GenderSelect value={gender} onChange={(e) => setGender(e.target.value)} />
+                <input value={job} onChange={(e) => setJob(e.target.value)} placeholder="Job" />
+                <ZodiacSelect value={zodiac} onChange={(e) => setZodiac(e.target.value)} />
+                <RelationshipSelect value={relationshipStatus} onChange={(e) => setRelationshipStatus(e.target.value)} />
+                <div className="mood-input">
+                  <textarea
+                    value={input}
+                    onChange={(e) => setInput(e.target.value)}
+                    placeholder="Describe your mood or scene..."
+                    rows={4}
+                  />
+                </div>
+                <div className='buttonArea'>
+                  <button className='recommendation_button' onClick={handleSubmit} style={{ padding: "10px 20px" }}>
+                    Get Music Recommendations
+                  </button>
+                </div>
+              </div>
+            </header>
+            <div className="listplayer">
+              {/* Spotify player and related content */}
+              <SpotifyPlayer uri={uri} size={{ width: '100%', height: 300 }} />
+            </div>
           </div>
         </div>
       </div>
+      {(token === '')
+        ? <h3></h3>
+        : <div>
+          <WebPlayback token={token} />
+        </div>}
     </div>
   );
 }
@@ -373,8 +375,11 @@ function GetStartedPage() {
               </p>
               <ul>
                 <li>Connect Your Spotify Account: Sign in with your Spotify account for a personalized touch.</li>
+                <p></p>
                 <li>Share a Bit About Yourself: Fill in the personal info section with your age, MBTI type, and more. Fear not—your details are confidential and solely used to enhance your music recommendations.</li>
+                <p></p>
                 <li>Set the Mood: Describe how you’re feeling or the vibe you’re after in the text box on our main page.</li>
+                <p></p>
                 <li>Discover Your Sound: Hit the ‘Get Music Recommendations’ button and get ready for a playlist that’s tailor-made for you.</li>
               </ul>
               <p>Enjoy the thrill of discovering music that strikes a chord with your soul.</p>

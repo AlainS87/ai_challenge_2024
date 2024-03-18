@@ -12,6 +12,22 @@
   /* Allows children to wrap onto next line if space is insufficient */
 }
 
+.container2 {
+  margin-top: 100px;
+  display: flex;
+  text-align: center;
+  /* Change to row to align children side by side */
+  align-items: center;
+  /* Align children to the start vertically */
+  justify-content: center;
+  /* Center children horizontally if there is extra space */
+  width: 100%;
+  /* Full width */
+  flex-wrap: wrap;
+  /* Allows children to wrap onto next line if space is insufficient */
+  height: 800px;
+}
+
 .content {
   display: flex;
   justify-content: space-around;
@@ -340,7 +356,7 @@ button:hover {
 .instructions {
   font-size: 2em;
   /* Bigger text */
-  font-family: 'Arial', sans-serif;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   /* Change the font-family to your preference */
   line-height: 1.6;
   /* Adjust line spacing */
