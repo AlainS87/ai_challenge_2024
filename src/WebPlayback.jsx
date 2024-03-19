@@ -1,3 +1,5 @@
+// This code is adapted from the Spotify Web Playback SDK example available at:
+// https://github.com/spotify/spotify-web-playback-sdk-example
 import React, { useState, useEffect } from 'react';
 import './webplayer.css';
 const track = {

@@ -11,9 +11,13 @@
   flex-wrap: wrap;
   /* Allows children to wrap onto next line if space is insufficient */
 }
-
+.notice {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 13px;
+  color:#0eb9b3;
+}
 .container2 {
-  margin-top: 100px;
+  margin-top: 150px;
   display: flex;
   text-align: center;
   /* Change to row to align children side by side */
