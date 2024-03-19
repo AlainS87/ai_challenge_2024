@@ -38,12 +38,16 @@ This will install all necessary dependencies, including Express for your server 
 Next, generate a GPT API key:
 
 1. Sign up or log in Chat-GPT and navigate to the API keys section.
+
 2. Visit the OpenAI API portal [here](https://platform.openai.com/api-keys)
 ![api_page](src/docs/GPT_api_page.png)
+
 3. Generate a new API key to be used in your project.
 ![key_generation](src/docs/key_generation.png)
+
 4. Copy down the API key.
 ![copyKey](src/docs/copyKey.png)
+
 5. repeate step 3-4 twice to paste to different key into server/server_init.js and server/server.js respectively.
 ![serverinitPicture](src/docs/serverinitPicture.png)
 ![serverPicture](src/docs/server.png)
@@ -55,14 +59,18 @@ This API key allows your application to communicate with GPT services, enabling 
 To integrate Spotify's music services:
 
 1. Create a Spotify premium account.
+
 2. Head over to the Spotify Developer Dashboard [here](https://developer.spotify.com/dashboard)
 ![spotify_dashboard](src/docs/spotify_dashboard.png)
+
 3. Create a new application.Remember to tick all the boxes shown in the picture below, and replace the "Redirect URI" section with `http://localhost:3000/auth/callback`
 ![createapp](src/docs/createapp.png)
+
 4. Click save and then click setting.
 ![save](src/docs/save.png)
 ![setting](src/docs/setting.png)
-4. Copy your Client ID and Client Secret into server/index.js.
+
+5. Copy your Client ID and Client Secret into server/index.js.
 ![index](src/docs/index.png)
 These credentials are crucial for your application to interact with Spotify's Web API, fetching personalized music recommendations for your users.
 
@@ -71,11 +79,21 @@ These credentials are crucial for your application to interact with Spotify's We
 Get SoulSound up and running by executing the following commands in separate terminal windows:
 
 * `node server/index.js`
+![npmindex](src/docs/npmindex.png)
 * `node server/server_init.js`
+![serverinit](src/docs/serverinit.png)
 * `node server/server.js`
+![npmserver](src/docs/npmserver.png)
 * `npm start`
 
 A webpage will launch, ushering you into the SoulSound experience 🎉🎉.
+
+If the Node version in your computer is 17 or higher:
+
+For Windows systems, if you encounter difficulties running the program, you can try entering the following command in the terminal **before** entering `npm start`: `env:NODE_OPTIONS="--openssl-legacy-provider"`
+
+For Mac Users, please update your package.json file accordingly:
+![macnode](src/docs/macnode.png)
 
 ## How to Start Using SoulSound <a name="howtostart"></a>
 Website Overview:
