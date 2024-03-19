@@ -1,3 +1,5 @@
+// This code is adapted from the Spotify Web Playback SDK example available at:
+// https://github.com/spotify/spotify-web-playback-sdk-example
 import React, { useState, useEffect } from 'react';
 import './webplayer.css';
 const track = {
@@ -71,14 +73,15 @@ function WebPlayback(props) {
             <>
                 <div className="container">
                     <div className="main-wrapper">
-                        <h3 className='login-text'> Instance not active. Transfer your playback using your Spotify app </h3>
+                        <h3 className='login-text'>  </h3>
                     </div>
                 </div>
             </>)
     } else {
         return (
             <>
-                <div className="container">
+                <div className="container2">
+                    <div className="mid">
                     <div className="main-wrapper">
 
                         <img src={current_track.album.images[0].url} className="now-playing__cover" alt="" />
@@ -100,6 +103,7 @@ function WebPlayback(props) {
                                 </button>
                             </div>
                         </div>
+                    </div>
                     </div>
                 </div>
             </>

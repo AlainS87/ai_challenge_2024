@@ -1,19 +1,20 @@
+// This code is adapted from the Spotify Web Playback SDK example available at:
+// https://github.com/spotify/spotify-web-playback-sdk-example
 const express = require('express')
 const request = require('request');
 const dotenv = require('dotenv');
 const cors = require('cors');
 const SpotifyWebApi = require('spotify-web-api-node');
 
-// 在其他中间件注册之前注册 CORS 中间件
-
+// Register CORS middleware before registering other middleware
 const port = 5003
 
 global.access_token = ''
 
 dotenv.config()
 
-var spotify_client_id = 'e4443cf14fd644a6b7460c3ee6cfc9a4'
-var spotify_client_secret = '834f9e4b82364248bafa9aa87c965d95'
+var spotify_client_id = '1c27044e7be34f178070d65ad3b29d5a'
+var spotify_client_secret = 'e05ae2218c0a40c5a275dade48f59d3d'
 
 var spotify_redirect_uri = 'http://localhost:3000/auth/callback'
 
@@ -49,7 +50,6 @@ app.get('/auth/login', (req, res) => {
     redirect_uri: spotify_redirect_uri,
     state: state
   })
-  console.log("start")
   res.redirect('https://accounts.spotify.com/authorize/?' + auth_query_parameters.toString());
 })
 
@@ -81,7 +81,6 @@ app.get('/auth/callback', (req, res) => {
 })
 
 app.get('/auth/token', (req, res) => {
-  console.log(access_token)
   spotifyApi.setAccessToken(access_token);
   res.json({ access_token: access_token })
 })
@@ -91,14 +90,13 @@ app.listen(port, () => {
 })
 
 app.get('/recommendations', (req, res) => {
-  // 从查询参数中获取用户信息
+  // Extract user information from query parameters
   const { mood, age, mbti, gender, job, zodiac, relationshipStatus } = req.query;
 
-  // 根据心情选择合适的种子流派
+  // Select suitable seed genres based on mood
   const seed_genres = moodToGenres(mood);
-  console.log(seed_genres);
 
-  // 根据年龄、性格等信息进一步调整音乐特征参数
+  // Further adjust music feature parameters based on age, personality, etc.
   const { target_valence,
     target_energy,
     target_danceability,
@@ -107,7 +105,7 @@ app.get('/recommendations', (req, res) => {
     target_acousticness,
     target_instrumentalness } = userInfoToMusicFeatures(mood, age, mbti, gender, job, zodiac, relationshipStatus);
 
-  // 构建推荐API的请求选项
+  // Build options for the recommendation API request
   const recommendOptions = {
     url: 'https://api.spotify.com/v1/recommendations',
     qs: {
@@ -119,7 +117,7 @@ app.get('/recommendations', (req, res) => {
       target_speechiness: target_speechiness,
       target_acousticness: target_acousticness,
       target_instrumentalness: target_instrumentalness
-      // 根据需要添加更多音乐特征参数
+      // Add more music feature parameters when needed
     },
     headers: {
       'Authorization': 'Bearer ' + access_token,
@@ -128,13 +126,13 @@ app.get('/recommendations', (req, res) => {
     json: true
   };
 
-  // 调用Spotify推荐API
+  // Call the Spotify recommendation API
   request.get(recommendOptions, function (error, response, body) {
     if (!error && response.statusCode === 200) {
-      // 发送推荐的歌曲回客户端
+      // Send recommended tracks back to the client
       res.json(body.tracks);
     } else {
-      // 错误处理
+      // Error handling
       res.status(response.statusCode).json({ error: error });
     }
   });
@@ -145,12 +143,12 @@ function userInfoToMusicFeatures(mood, age, mbti, gender, zodiac, relationshipSt
   let target_valence = 0.5;
   let target_energy = 0.5;
   let target_danceability = 0.5;
-  let target_popularity = 50; // 假设一个中等的流行度
+  let target_popularity = 50; // Assuming a moderate popularity
   let target_speechiness = 0.5;
   let target_acousticness = 0.5;
   let target_instrumentalness = 0.5;
 
-  // MBTI性格类型对音乐特征的影响
+  // Influence of MBTI personality types on music preference
   if (['ESTP', 'ESFP', 'ENFP', 'ENTP'].includes(mbti)) {
     target_danceability += 0.1;
     target_energy += 0.1;
@@ -159,7 +157,7 @@ function userInfoToMusicFeatures(mood, age, mbti, gender, zodiac, relationshipSt
     target_acousticness += 0.1;
   }
 
-  // 年龄对流行度和声学性的影响
+  // The effect of age on music preference
   if (age < 25) {
     target_popularity += 10;
     target_danceability += 0.1;
@@ -168,14 +166,14 @@ function userInfoToMusicFeatures(mood, age, mbti, gender, zodiac, relationshipSt
     target_acousticness += 0.1;
   }
 
-  // 性别对语言表达性的影响
+  // Influence of gender on the expressiveness of language
   if (gender == 'Female') {
     target_speechiness += 0.05;
   } else if (gender == 'Male') {
     target_speechiness -= 0.05;
   }
 
-  // 星座对情感值和能量的影响
+  // Influence of Astrological Signs on Emotional Values and Energy
   const fireSigns = ['Aries', 'Leo', 'Sagittarius'];
   const waterSigns = ['Cancer', 'Scorpio', 'Pisces'];
 
@@ -187,7 +185,7 @@ function userInfoToMusicFeatures(mood, age, mbti, gender, zodiac, relationshipSt
     target_acousticness += 0.1;
   }
 
-  // 感情状态对舞曲能力和器乐性的影响
+  // The effect of affective state on danceability and instrumentality
   switch (relationshipStatus) {
     case 'Single':
       target_danceability += 0.1;
@@ -205,7 +203,7 @@ function userInfoToMusicFeatures(mood, age, mbti, gender, zodiac, relationshipSt
       break;
   }
 
-  // 确保所有特征值都在合理范围内
+  // Ensure that all eigenvalues are within reasonable limits
   target_valence = Math.min(Math.max(target_valence, 0), 1);
   target_energy = Math.min(Math.max(target_energy, 0), 1);
   target_danceability = Math.min(Math.max(target_danceability, 0), 1);
@@ -329,48 +327,42 @@ function moodToGenres(mood) {
     'Love': ['romance', 'pop', 'r-n-b', 'soul', 'singer-songwriter', 'acoustic'],
   };
 
-  return moodGenresMap[mood] || ['romance', 'pop', 'r-n-b', 'soul', 'singer-songwriter', 'acoustic']; // 如果找不到对应情绪，返回空数组
+  return moodGenresMap[mood] || ['romance', 'pop', 'r-n-b', 'soul', 'singer-songwriter', 'acoustic']; // If the corresponding emotion is not found, an empty array is returned.
 }
 
 app.post('/create-playlist', async (req, res) => {
-  const { tracksInfo, playlistName } = req.body; // 从请求体获取歌曲信息和播放列表名称
+  const { tracksInfo, playlistName } = req.body; // Gets song information and playlist name from request body
   spotifyApi.setAccessToken(access_token);
-  console.log(tracksInfo);
-  console.log(playlistName);
-  console.log(access_token);
   try {
-    // 创建一个空的播放列表
+    // Creates an empty playlist
     const playlist = await spotifyApi.createPlaylist(playlistName, {
       description: 'Recommendations From Soul Sound',
-      public: true // 或根据需要将其设置为false
+      public: true // Or set it to false as needed.
     });
 
-    // 搜索每首歌曲并获取其Spotify ID
-    // 假设tracksInfo是一个包含歌曲名和歌手的数组，格式为["歌曲名 - 歌手名"]
+    // Searches for each song and get its Spotify ID
+    // Supposes tracksInfo is an array containing song names and singers in the format ["Song Name - Singer Name"]
     const trackIds = await Promise.all(tracksInfo.map(async (trackInfo) => {
-      // 使用 "track:歌曲名 artist:歌手名" 格式来提高搜索准确性
+      // Uses the "track:song name artist:artist name" format to improve search accuracy.
       const query = `track:${trackInfo.split(' | ')[0]} artist:${trackInfo.split(' | ')[1]}`;
-      console.log(query);
       const result = await spotifyApi.searchTracks(query);
-      console.log("result")
-      console.log(result)
       return result.body.tracks.items.length > 0 ? `spotify:track:${result.body.tracks.items[0].id}` : null;
     }));
 
-    // 过滤掉未找到的歌曲
+    // Filters out unfound songs
     const filteredTrackIds = trackIds.filter(id => id !== null);
 
-    // 将歌曲添加到播放列表
+    // Adds songs to a playlist
     await spotifyApi.addTracksToPlaylist(playlist.body.id, filteredTrackIds);
 
     res.json({
-      message: '播放列表创建成功',
+      message: 'Playlist created successfully',
       playlistId: playlist.body.id,
       playlistUrl: playlist.body.external_urls.spotify,
       playlistUri: playlist.body.uri
     });
   } catch (error) {
-    console.error('创建播放列表时发生错误:', error);
-    res.status(500).json({ error: '服务器内部错误' });
+    console.error('An error occurred while creating a playlist:', error);
+    res.status(500).json({ error: 'Internal server error' });
   }
 });
