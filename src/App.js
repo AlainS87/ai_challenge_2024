@@ -152,9 +152,7 @@ function MainPage() {
 
   // Function to handle form submission and fetch music recommendations based on user inputs
   const handleSubmit = async () => {
-    // Code to handle fetching and setting recommendations here
-    // Includes fetching mood analysis, fetching recommendations from Spotify,
-    // setting Spotify URI, and handling errors
+    // Sends parameters to ChatGPT to get analysis
     const mood = await fetch('http://localhost:5006/api/analyze-mood', {
       method: 'POST',
       headers: {
@@ -179,10 +177,12 @@ function MainPage() {
       relationshipStatus,
     }).toString();
 
+    // Asks spotify to recommend songs
     const response_from_spotify = await fetch(`http://localhost:5003/recommendations?${queryParams}`, {
       method: 'GET', 
     });
 
+    // Error handling
     if (!response_from_spotify.ok) {
       console.error("Failed to fetch music recommendations.");
       return;
@@ -197,6 +197,7 @@ function MainPage() {
       var value = item.artists[0].name;
     });
 
+    // Extracts artist names and songs
     const songArtistArray = tracksData.map(track => ({
       songName: track.name,
       artistNames: track.artists[0].name
@@ -205,6 +206,7 @@ function MainPage() {
     const example_songs = songArtistArray.map(track => `Song name:${track.songName} Artist Name: ${track.artistNames}`).join(", ");
     setRecommendations_spotify(songArtistArray);
 
+    // Sends songs to ChatGPT for it to reconsider its recommendation
     const response = await fetch('http://localhost:5007/api/recommend-music', {
       method: 'POST',
       headers: {
@@ -213,11 +215,13 @@ function MainPage() {
       body: JSON.stringify({ input, gpt_mood, age, mbti, gender, job, zodiac, relationshipStatus, example_songs }),
     });
 
+    // Error handling
     if (!response.ok) {
       console.error("Failed to fetch music recommendations.");
       return;
     }
 
+    // Reformats data sent from GPT to cater spotify searching algorithm
     const data = await response.json(); 
     const recommendationsList = data.recommendations.split("\n").map((item) => {
       const parts = item.split("|").map(part => part.trim()); // Splits each item and removes leading and trailing spaces.
@@ -225,13 +229,13 @@ function MainPage() {
     });
     setRecommendations(recommendationsList);
 
-
     const tracksInfo = recommendationsList.map(item => {
       const song = item.song ? item.song.replace(/"/g, '\\"') : "";
       const artist = item.artist ? item.artist.replace(/"/g, '\\"') : "";
       return `${song} | ${artist}`;
     });
 
+    // Obtains and creates recommendation list inside user's spotify app
     const spotify_search_response = await fetch('http://localhost:5003/create-playlist', {
       method: 'POST',
       headers: {
@@ -242,7 +246,8 @@ function MainPage() {
         playlistName: 'Soul Sound Recommendation List'
       }),
     });
-
+  
+    // Extracts Uri from data
     const souldata = await spotify_search_response.json(); // Parses JSON response
     var temp = souldata['playlistUri']
     setUri(temp)
