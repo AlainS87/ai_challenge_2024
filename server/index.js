@@ -6,13 +6,13 @@ const dotenv = require('dotenv');
 const cors = require('cors');
 const SpotifyWebApi = require('spotify-web-api-node');
 
+
 // Register CORS middleware before registering other middleware
 const port = 5003
 
 global.access_token = ''
 
 dotenv.config()
-
 var spotify_client_id = '1c27044e7be34f178070d65ad3b29d5a'
 var spotify_client_secret = 'e05ae2218c0a40c5a275dade48f59d3d'
 

@@ -49,8 +49,8 @@ Next, generate a GPT API key:
 ![copyKey](src/docs/copyKey.png)
 
 5. repeate step 3-4 twice to paste to different key into server/server_init.js and server/server.js respectively.
-![serverinitPicture](src/docs/serverinitPicture.png)
-![serverPicture](src/docs/server.png)
+![serverinitPicture](src/docs/serverinitapi.png)
+![serverPicture](src/docs/serverapi.png)
 
 This API key allows your application to communicate with GPT services, enabling AI-driven music recommendations.
 
@@ -71,7 +71,7 @@ To integrate Spotify's music services:
 ![setting](src/docs/setting.png)
 
 5. Copy your Client ID and Client Secret into server/index.js.
-![index](src/docs/index.png)
+![index](src/docs/indexapi.png)
 These credentials are crucial for your application to interact with Spotify's Web API, fetching personalized music recommendations for your users.
 
 ## How to Run SoulSound <a name="howtorun"></a>
