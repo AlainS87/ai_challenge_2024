@@ -1,7 +1,8 @@
 # SoulSound
 ![soulsoundlogo](src/docs/soulsoundlogo.jpg)
 
-Tired of the same tunes every day? You've found the perfect spot to explore new music that resonates with your very essence. SoulSound is dedicated to uncovering the music that speaks to the depths of your soul, offering you a uniquely personalized listening experience.
+Tired of the same tunes every day? You've found the perfect spot to explore new music that resonates with your very essence. SoulSound is dedicated to uncovering the music that speaks to the depths of your soul, offering you a uniquely personalized listening experience. 
+* Here is our demo video [link](https://youtu.be/lVgwP4j2Sqw).
 
 # Table of Contents
 
@@ -42,7 +43,7 @@ Next, generate a GPT API key:
 2. Visit the OpenAI API portal [here](https://platform.openai.com/api-keys)
 ![api_page](src/docs/GPT_api_page.png)
 
-3. Generate a new API key to be used in your project.
+3. Generate a new API key to be used in your project. Be careful, you must set up a **billing method** to enable this API key to work for **gpt-4** model.
 ![key_generation](src/docs/key_generation.png)
 
 4. Copy down the API key.
@@ -58,7 +59,7 @@ This API key allows your application to communicate with GPT services, enabling 
 
 To integrate Spotify's music services:
 
-1. Create a Spotify premium account.
+1. Create a Spotify **premium** account.
 
 2. Head over to the Spotify Developer Dashboard [here](https://developer.spotify.com/dashboard)
 ![spotify_dashboard](src/docs/spotify_dashboard.png)
