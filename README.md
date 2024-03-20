@@ -109,7 +109,7 @@ Follow these steps to dive into your personalized music journey:
 * ![login](src/docs/login.png)
 3. Answer the on-screen questions to tailor your experience.
 * ![input](src/docs/input.png)
-4. Share how you're cuurently feeling or what image is in your mind to fine-tune your music recommendations.
+4. Share how you're curently feeling or what image is in your mind to fine-tune your music recommendations.
 5. Enjoy the customized music selections tailored just for you, by clicking on "Get Music Recommendations" 😉.
 
 * ![musicList](src/docs/musicList.png)
